@@ -22,6 +22,8 @@ import RegexTester from './RegexTester';
 import HashGenerator from './HashGenerator';
 import ColorConverter from './ColorConverter';
 import Base64Converter from './Base64Converter';
+import CronParser from './CronParser';
+import JwtDecoder from './JwtDecoder';
 
 import HomePage from './HomePage';
 
@@ -53,6 +55,8 @@ function App() {
               <Button color="inherit" component={Link} to="/hash">Hash Generator</Button>
               <Button color="inherit" component={Link} to="/color">Color Converter</Button>
               <Button color="inherit" component={Link} to="/base64">Base64 Encoder/Decoder</Button>
+              <Button color="inherit" component={Link} to="/cron">Cron Parser</Button>
+              <Button color="inherit" component={Link} to="/jwt">JWT Decoder</Button>
             </Toolbar>
           </AppBar>
           <Box>
@@ -68,6 +72,8 @@ function App() {
               <Route path="/hash" element={<HashGenerator />} />
               <Route path="/color" element={<ColorConverter />} />
               <Route path="/base64" element={<Base64Converter />} />
+              <Route path="/cron" element={<CronParser />} />
+              <Route path="/jwt" element={<JwtDecoder />} />
             </Routes>
           </Box>
         </Box>

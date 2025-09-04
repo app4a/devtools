@@ -61,6 +61,16 @@ function HomePage() {
       path: '/base64',
       description: 'Encode or decode text using Base64.',
     },
+    {
+      name: 'Cron Expression Parser',
+      path: '/cron',
+      description: 'Parse cron expressions and get human-readable descriptions and upcoming dates.',
+    },
+    {
+      name: 'JWT Decoder',
+      path: '/jwt',
+      description: 'Decode JWT tokens and inspect their header, payload, and signature.',
+    },
   ];
 
   return (
