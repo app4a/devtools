@@ -7,6 +7,8 @@ import {
   TextareaAutosize
 } from '@mui/material';
 
+import { Helmet } from 'react-helmet-async';
+
 export default function QuoteMultiline() {
   const [inputText, setInputText] = useState('');
   const [wrapChar, setWrapChar] = useState("'");
@@ -32,7 +34,10 @@ export default function QuoteMultiline() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-
+      <Helmet>
+        <title>Multiline Formatter - Dev Tools</title>
+        <meta name="description" content="Format multiline strings, useful for SQL queries or code snippets." />
+      </Helmet>
       <Paper sx={{ p: 1, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', alignItems: 'center' }} elevation={0}>
         <Typography variant="body2" sx={{ml: 2, color: '#ffffff', flexGrow: 1}}>Paste Multiline Text</Typography>
         <TextField

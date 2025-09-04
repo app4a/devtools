@@ -22,6 +22,8 @@ import AddIcon from '@mui/icons-material/Add';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
 
+import { Helmet } from 'react-helmet-async';
+
 // A simplified list of major cities and their IANA time zone IDs
 // In a real app, this would come from an API or a more comprehensive list
 const allTimezones = [
@@ -127,6 +129,10 @@ export default function WorldTime() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
+      <Helmet>
+        <title>World Time - Dev Tools</title>
+        <meta name="description" content="View current times in various cities around the world." />
+      </Helmet>
       <Paper sx={{ p: 2, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', flexDirection: 'column', gap: 2 }} elevation={0}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ color: '#ffffff' }}>Reference Time:</Typography>
@@ -233,3 +239,4 @@ export default function WorldTime() {
     </Box>
   );
 }
+

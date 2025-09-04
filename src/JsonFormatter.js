@@ -12,6 +12,8 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-json';
 import 'prismjs/themes/prism-tomorrow.css'; // Using a dark theme for prism
 
+import { Helmet } from 'react-helmet-async';
+
 const LineNumberedEditor = ({ value, onValueChange, readOnly, placeholder }) => {
   const lineCount = value.split('\n').length;
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
@@ -82,6 +84,10 @@ export default function JsonFormatter() {
 
   return (
     <Box sx={{ display: 'flex', p: 2, gap: 2 }}>
+      <Helmet>
+        <title>JSON Formatter - Dev Tools</title>
+        <meta name="description" content="Format and validate JSON data for better readability and debugging." />
+      </Helmet>
       <style>{`
         .readonly-textarea {
           color: ${error ? 'red' : 'inherit'} !important;

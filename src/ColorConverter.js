@@ -12,6 +12,8 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { SketchPicker } from 'react-color';
 
+import { Helmet } from 'react-helmet-async';
+
 // Helper function to convert hex to rgb
 const hexToRgb = (hex) => {
   const bigint = parseInt(hex.slice(1), 16);
@@ -114,6 +116,10 @@ export default function ColorConverter() {
 
   return (
     <Box sx={{ p: 2 }}>
+      <Helmet>
+        <title>Color Converter - Dev Tools</title>
+        <meta name="description" content="Convert between HEX, RGB, and HSL color formats. Includes a color picker for convenience." />
+      </Helmet>
       <Typography variant="h4" gutterBottom>
         Color Converter
       </Typography>

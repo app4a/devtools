@@ -14,6 +14,8 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CryptoJS from 'crypto-js';
 
+import { Helmet } from 'react-helmet-async';
+
 export default function HashGenerator() {
   const [text, setText] = useState('');
   const [hashes, setHashes] = useState(null);
@@ -43,6 +45,10 @@ export default function HashGenerator() {
 
   return (
     <Box sx={{ p: 2 }}>
+      <Helmet>
+        <title>Hash Generator - Dev Tools</title>
+        <meta name="description" content="Generate hashes like MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160 for text." />
+      </Helmet>
       <Typography variant="h4" gutterBottom>
         Hash Generator
       </Typography>

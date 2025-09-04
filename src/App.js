@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import {
   Box,
   Typography,
@@ -12,21 +12,21 @@ import {
 import { createTheme } from '@mui/material/styles';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-import JsonFormatter from './JsonFormatter';
-import DiffTool from './DiffTool';
-import MultilineFormatter from './MultilineFormatter';
-import WorldTime from './WorldTime';
-import UrlEncoderDecoder from './UrlEncoderDecoder';
-import TimestampConverter from './TimestampConverter';
-import RegexTester from './RegexTester';
-import HashGenerator from './HashGenerator';
-import ColorConverter from './ColorConverter';
-import Base64Converter from './Base64Converter';
-import CronParser from './CronParser';
-import JwtDecoder from './JwtDecoder';
-
 import HomePage from './HomePage';
 import Sidebar from './Sidebar'; // Will create this component next
+
+const JsonFormatter = React.lazy(() => import('./JsonFormatter'));
+const DiffTool = React.lazy(() => import('./DiffTool'));
+const MultilineFormatter = React.lazy(() => import('./MultilineFormatter'));
+const WorldTime = React.lazy(() => import('./WorldTime'));
+const UrlEncoderDecoder = React.lazy(() => import('./UrlEncoderDecoder'));
+const TimestampConverter = React.lazy(() => import('./TimestampConverter'));
+const RegexTester = React.lazy(() => import('./RegexTester'));
+const HashGenerator = React.lazy(() => import('./HashGenerator'));
+const ColorConverter = React.lazy(() => import('./ColorConverter'));
+const Base64Converter = React.lazy(() => import('./Base64Converter'));
+const CronParser = React.lazy(() => import('./CronParser'));
+const JwtDecoder = React.lazy(() => import('./JwtDecoder'));
 
 const darkTheme = createTheme({
   palette: {
@@ -72,21 +72,23 @@ function App() {
               mt: '64px', // AppBar height
             }}
           >
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/json" element={<JsonFormatter />} />
-              <Route path="/diff" element={<DiffTool />} />
-              <Route path="/multiline" element={<MultilineFormatter />} />
-              <Route path="/worldtime" element={<WorldTime />} />
-              <Route path="/url" element={<UrlEncoderDecoder />} />
-              <Route path="/timestamp" element={<TimestampConverter />} />
-              <Route path="/regex" element={<RegexTester />} />
-              <Route path="/hash" element={<HashGenerator />} />
-              <Route path="/color" element={<ColorConverter />} />
-              <Route path="/base64" element={<Base64Converter />} />
-              <Route path="/cron" element={<CronParser />} />
-              <Route path="/jwt" element={<JwtDecoder />} />
-            </Routes>
+            <Suspense fallback={<Box sx={{ p: 2 }}><Typography>Loading...</Typography></Box>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/json" element={<JsonFormatter />} />
+                <Route path="/diff" element={<DiffTool />} />
+                <Route path="/multiline" element={<MultilineFormatter />} />
+                <Route path="/worldtime" element={<WorldTime />} />
+                <Route path="/url" element={<UrlEncoderDecoder />} />
+                <Route path="/timestamp" element={<TimestampConverter />} />
+                <Route path="/regex" element={<RegexTester />} />
+                <Route path="/hash" element={<HashGenerator />} />
+                <Route path="/color" element={<ColorConverter />} />
+                <Route path="/base64" element={<Base64Converter />} />
+                <Route path="/cron" element={<CronParser />} />
+                <Route path="/jwt" element={<JwtDecoder />} />
+              </Routes>
+            </Suspense>
           </Box>
         </Box>
       </Router>

@@ -10,6 +10,8 @@ import {
   ToggleButton
 } from '@mui/material';
 
+import { Helmet } from 'react-helmet-async';
+
 function UrlEncoderDecoder() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
@@ -33,6 +35,10 @@ function UrlEncoderDecoder() {
 
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
+      <Helmet>
+        <title>URL Encoder/Decoder - Dev Tools</title>
+        <meta name="description" content="Encode or decode URL components, query parameters, and entire URLs to ensure proper formatting and prevent issues with special characters." />
+      </Helmet>
       <Typography variant="h4" gutterBottom>
         URL Encoder/Decoder
       </Typography>

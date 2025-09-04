@@ -8,6 +8,8 @@ import {
   ToggleButton
 } from '@mui/material';
 
+import { Helmet } from 'react-helmet-async';
+
 export default function Base64Converter() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
@@ -31,6 +33,10 @@ export default function Base64Converter() {
 
   return (
     <Box sx={{ p: 2 }}>
+      <Helmet>
+        <title>Base64 Encoder/Decoder - Dev Tools</title>
+        <meta name="description" content="Encode or decode text using Base64." />
+      </Helmet>
       <Typography variant="h4" gutterBottom>
         Base64 Encoder/Decoder
       </Typography>

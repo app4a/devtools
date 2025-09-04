@@ -13,6 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { Helmet } from 'react-helmet-async';
+
 const MatchHighlighter = ({ text, matches }) => {
   if (matches.length === 0) {
     return <Typography>{text}</Typography>;
@@ -74,6 +76,10 @@ export default function RegexTester() {
 
   return (
     <Box sx={{ height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
+      <Helmet>
+        <title>Regex Tester - Dev Tools</title>
+        <meta name="description" content="Test regular expressions against sample text. Highlight matches and capture groups." />
+      </Helmet>
       <Typography variant="h4" gutterBottom sx={{ pl: 2, pt: 2 }}>
         Regex Tester
       </Typography>
