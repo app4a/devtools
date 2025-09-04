@@ -21,6 +21,7 @@ import TimestampConverter from './TimestampConverter';
 import RegexTester from './RegexTester';
 import HashGenerator from './HashGenerator';
 import ColorConverter from './ColorConverter';
+import Base64Converter from './Base64Converter';
 
 import HomePage from './HomePage';
 
@@ -51,6 +52,7 @@ function App() {
               <Button color="inherit" component={Link} to="/regex">Regex Tester</Button>
               <Button color="inherit" component={Link} to="/hash">Hash Generator</Button>
               <Button color="inherit" component={Link} to="/color">Color Converter</Button>
+              <Button color="inherit" component={Link} to="/base64">Base64 Encoder/Decoder</Button>
             </Toolbar>
           </AppBar>
           <Box>
@@ -65,6 +67,7 @@ function App() {
               <Route path="/regex" element={<RegexTester />} />
               <Route path="/hash" element={<HashGenerator />} />
               <Route path="/color" element={<ColorConverter />} />
+              <Route path="/base64" element={<Base64Converter />} />
             </Routes>
           </Box>
         </Box>

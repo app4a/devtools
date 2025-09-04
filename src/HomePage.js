@@ -56,6 +56,11 @@ function HomePage() {
       path: '/color',
       description: 'Convert between HEX, RGB, HSL & Include a color picker for convenience.',
     },
+    {
+      name: 'Base64 Encoder/Decoder',
+      path: '/base64',
+      description: 'Encode or decode text using Base64.',
+    },
   ];
 
   return (
