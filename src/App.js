@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import {
-  AppBar,
-  Tabs,
-  Tab,
   Box,
   Typography,
   ThemeProvider,
   CssBaseline,
+  AppBar,
+  Toolbar,
+  Button
 } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 import JsonFormatter from './JsonFormatter';
-import ImageGenerator from './ImageGenerator';
+import DiffTool from './DiffTool';
+import MultilineFormatter from './MultilineFormatter';
+import WorldTime from './WorldTime';
+import UrlEncoderDecoder from './UrlEncoderDecoder';
+import TimestampConverter from './TimestampConverter';
+
+import HomePage from './HomePage';
 
 const darkTheme = createTheme({
   palette: {
@@ -18,57 +27,39 @@ const darkTheme = createTheme({
   },
 });
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
 function App() {
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box sx={{ width: '100%' }}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-            <Tab label="JSON Formatter" {...a11yProps(0)} />
-            <Tab label="Image Generator" {...a11yProps(1)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <JsonFormatter />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <ImageGenerator />
-        </TabPanel>
-      </Box>
+      <Router>
+                <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Dev Tools
+              </Typography>
+              <Button color="inherit" component={Link} to="/">Home</Button>
+              <Button color="inherit" component={Link} to="/json">JSON Formatter</Button>
+              <Button color="inherit" component={Link} to="/diff">Diff Tool</Button>
+              <Button color="inherit" component={Link} to="/multiline">Multiline Formatter</Button>
+              <Button color="inherit" component={Link} to="/worldtime">World Time</Button>
+              <Button color="inherit" component={Link} to="/url">URL Encoder/Decoder</Button>
+              <Button color="inherit" component={Link} to="/timestamp">Timestamp Converter</Button>
+            </Toolbar>
+          </AppBar>
+          <Box sx={{ p: 2 }}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/json" element={<JsonFormatter />} />
+              <Route path="/diff" element={<DiffTool />} />
+              <Route path="/multiline" element={<MultilineFormatter />} />
+              <Route path="/worldtime" element={<WorldTime />} />
+              <Route path="/url" element={<UrlEncoderDecoder />} />
+              <Route path="/timestamp" element={<TimestampConverter />} />
+            </Routes>
+          </Box>
+        </Box>
+      </Router>
     </ThemeProvider>
   );
 }

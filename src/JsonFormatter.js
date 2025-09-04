@@ -81,7 +81,7 @@ export default function JsonFormatter() {
   };
 
   return (
-    <Box sx={{ display: 'flex', height: 'calc(100vh - 48px)', p: 2, gap: 2 }}>
+    <Box sx={{ display: 'flex', p: 2, gap: 2 }}>
       <style>{`
         .readonly-textarea {
           color: ${error ? 'red' : 'inherit'} !important;
