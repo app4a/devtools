@@ -27,7 +27,7 @@ export default function DiffTool() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Paper sx={{ p: 1, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d' }} elevation={0}>
         <Typography variant="body2" sx={{ml: 2, color: '#ffffff'}}>Paste Text to Compare</Typography>
       </Paper>

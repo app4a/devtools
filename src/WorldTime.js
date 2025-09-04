@@ -126,7 +126,7 @@ export default function WorldTime() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Paper sx={{ p: 2, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', flexDirection: 'column', gap: 2 }} elevation={0}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ color: '#ffffff' }}>Reference Time:</Typography>

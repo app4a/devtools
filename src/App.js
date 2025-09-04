@@ -18,6 +18,9 @@ import MultilineFormatter from './MultilineFormatter';
 import WorldTime from './WorldTime';
 import UrlEncoderDecoder from './UrlEncoderDecoder';
 import TimestampConverter from './TimestampConverter';
+import RegexTester from './RegexTester';
+import HashGenerator from './HashGenerator';
+import ColorConverter from './ColorConverter';
 
 import HomePage from './HomePage';
 
@@ -45,9 +48,12 @@ function App() {
               <Button color="inherit" component={Link} to="/worldtime">World Time</Button>
               <Button color="inherit" component={Link} to="/url">URL Encoder/Decoder</Button>
               <Button color="inherit" component={Link} to="/timestamp">Timestamp Converter</Button>
+              <Button color="inherit" component={Link} to="/regex">Regex Tester</Button>
+              <Button color="inherit" component={Link} to="/hash">Hash Generator</Button>
+              <Button color="inherit" component={Link} to="/color">Color Converter</Button>
             </Toolbar>
           </AppBar>
-          <Box sx={{ p: 2 }}>
+          <Box>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/json" element={<JsonFormatter />} />
@@ -56,6 +62,9 @@ function App() {
               <Route path="/worldtime" element={<WorldTime />} />
               <Route path="/url" element={<UrlEncoderDecoder />} />
               <Route path="/timestamp" element={<TimestampConverter />} />
+              <Route path="/regex" element={<RegexTester />} />
+              <Route path="/hash" element={<HashGenerator />} />
+              <Route path="/color" element={<ColorConverter />} />
             </Routes>
           </Box>
         </Box>

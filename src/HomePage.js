@@ -41,10 +41,25 @@ function HomePage() {
       path: '/timestamp',
       description: 'Convert Unix timestamps to human-readable dates and vice-versa, supporting various time zones.',
     },
+    {
+      name: 'Regex Tester',
+      path: '/regex',
+      description: 'Test regular expressions against sample text. Highlight matches and capture groups.',
+    },
+    {
+      name: 'Hash Generator',
+      path: '/hash',
+      description: 'Generate hashes like MD5, SHA-1, SHA-256 for text',
+    },
+    {
+      name: 'Color Converter',
+      path: '/color',
+      description: 'Convert between HEX, RGB, HSL & Include a color picker for convenience.',
+    },
   ];
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 2 }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Welcome to Dev Tools
       </Typography>

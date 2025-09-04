@@ -32,7 +32,7 @@ function UrlEncoderDecoder() {
   }, [inputText, mode]);
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
+    <Box sx={{ flexGrow: 1, p: 2 }}>
       <Typography variant="h4" gutterBottom>
         URL Encoder/Decoder
       </Typography>
