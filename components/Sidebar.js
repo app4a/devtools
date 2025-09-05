@@ -9,13 +9,10 @@ import {
   AccordionDetails,
   Typography,
   Box,
-  IconButton,
   styled
 } from '@mui/material';
-import ChevronRightIcon from '@mui/icons-material/ChevronRightOutlined';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const toolCategories = [
   {
@@ -70,17 +67,7 @@ const closedMixin = (theme, collapsedDrawerWidth) => ({
   width: collapsedDrawerWidth,
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  marginTop: '64px', // Explicitly push it down by AppBar height
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-const StyledDrawer = styled(Drawer)(({ theme, open, drawerWidth, collapsedDrawerWidth }) => ({
+const StyledDrawer = styled(Drawer, { shouldForwardProp: (prop) => prop !== 'drawerWidth' && prop !== 'collapsedDrawerWidth' })(({ theme, open, drawerWidth, collapsedDrawerWidth }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
@@ -95,15 +82,10 @@ const StyledDrawer = styled(Drawer)(({ theme, open, drawerWidth, collapsedDrawer
   }),
 }));
 
-export default function Sidebar({ open, handleDrawerToggle, drawerWidth, collapsedDrawerWidth }) {
+export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth }) {
   return (
     <StyledDrawer variant="permanent" open={open} drawerWidth={drawerWidth} collapsedDrawerWidth={collapsedDrawerWidth}>
-      <DrawerHeader>
-        <IconButton onClick={handleDrawerToggle}>
-          {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
-      </DrawerHeader>
-      <Box sx={{ overflowY: 'auto' }}>
+      <Box sx={{ mt: 8, overflowY: 'auto' }}>
         <List>
           {open ? (
             toolCategories.map((category) => (
@@ -118,7 +100,7 @@ export default function Sidebar({ open, handleDrawerToggle, drawerWidth, collaps
                 <AccordionDetails sx={{ p: 0 }}>
                   <List component="div" disablePadding>
                     {category.tools.map((tool) => (
-                      <ListItem button key={tool.name} component={Link} to={tool.path} sx={{ pl: 4 }}>
+                      <ListItem component={Link} href={tool.path} key={tool.name} sx={{ pl: 4 }}>
                         <ListItemText primary={tool.name} />
                       </ListItem>
                     ))}
@@ -128,7 +110,7 @@ export default function Sidebar({ open, handleDrawerToggle, drawerWidth, collaps
             ))
           ) : (
             toolCategories.map((category) => (
-              <ListItem button key={category.name} sx={{ display: 'flex', justifyContent: 'center', px: 2.5 }}>
+              <ListItem key={category.name} sx={{ display: 'flex', justifyContent: 'center', px: 2.5 }}>
                 {/* You might want to use an icon representing the category here */}
                 <ListItemText primary={category.name[0]} sx={{ opacity: open ? 1 : 0 }} />
               </ListItem>

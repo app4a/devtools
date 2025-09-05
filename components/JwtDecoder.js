@@ -9,7 +9,7 @@ import {
 import { jwtDecode } from 'jwt-decode';
 import * as jose from 'jose';
 
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
 export default function JwtDecoder() {
   const sampleToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30";
@@ -68,10 +68,10 @@ export default function JwtDecoder() {
 
   return (
     <Box sx={{ p: 2, height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
-      <Helmet>
+      <Head>
         <title>JWT Decoder - Dev Tools</title>
         <meta name="description" content="Decode JWT tokens and inspect their header, payload, and signature. Verify signature with a secret." />
-      </Helmet>
+      </Head>
       <Typography variant="h4" gutterBottom>
         JWT Decoder
       </Typography>

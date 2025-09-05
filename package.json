@@ -11,39 +11,33 @@
     "@mui/x-date-pickers": "^8.11.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^13.5.0",
+    "cron-parser": "^4.9.0",
+    "cronstrue": "^2.28.0",
+    "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "diff": "^8.0.2",
-    "prismjs": "^1.30.0",
-    "react": "^19.1.1",
-    "react-diff-viewer-continued": "^4.0.6",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.2",
-    "react-scripts": "5.0.1",
-    "react-simple-code-editor": "^0.14.1",
-    "react-syntax-highlighter": "^15.5.10",
-    "crypto-js": "^4.2.0",
-    "react-color": "^2.19.3",
-    "cronstrue": "^2.28.0",
-    "cron-parser": "^4.9.0",
-    "jwt-decode": "^4.0.0",
     "jose": "^5.2.0",
-    "react-helmet-async": "*",
+    "jwt-decode": "^4.0.0",
+    "next": "^13.5.11",
+    "prismjs": "^1.30.0",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-diff-viewer-continued": "^4.0.6",
+    "react-dom": "^18.2.0",
+    
+    "react-simple-code-editor": "^0.14.1",
+    
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "lint": "next lint"
   },
   "browserslist": {
     "production": [
@@ -59,7 +53,8 @@
   },
   "devDependencies": {
     "@types/diff": "^8.0.0",
+    "@types/react-color": "^3.0.6",
     "@types/react-syntax-highlighter": "^15.5.4",
-    "@types/react-color": "^3.0.6"
+    "eslint": "^9.34.0"
   }
 }

@@ -10,55 +10,12 @@ import {
   AccordionDetails
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
-import { Helmet } from 'react-helmet-async';
-
-const MatchHighlighter = ({ text, matches }) => {
-  if (matches.length === 0) {
-    return <Typography>{text}</Typography>;
-  }
-
-  const parts = [];
-  let lastIndex = 0;
-
-  matches.forEach((match, matchIndex) => {
-    const [fullMatch, ...groups] = match;
-    const startIndex = match.index;
-    const endIndex = startIndex + fullMatch.length;
-
-    // Add the text before the match
-    if (startIndex > lastIndex) {
-      parts.push(text.substring(lastIndex, startIndex));
-    }
-
-    // Add the highlighted match
-    parts.push(
-      <Box
-        component="span"
-        key={matchIndex}
-        sx={{ backgroundColor: '#f5a623', color: '#000', borderRadius: '3px' }}
-      >
-        {fullMatch}
-      </Box>
-    );
-
-    lastIndex = endIndex;
-  });
-
-  // Add the remaining text after the last match
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
-  }
-
-  return <Typography component="pre" sx={{ whiteSpace: 'pre-wrap' }}>{parts}</Typography>;
-};
+import Editor from '@monaco-editor/react';
+import Head from 'next/head';
 
 export default function RegexTester() {
   const [regex, setRegex] = useState('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)');
   const [text, setText] = useState('You can contact me at test@example.com or my.other.email@domain.co.uk.');
-
 
   const { matches, error } = useMemo(() => {
     if (!regex || !text) {
@@ -76,10 +33,10 @@ export default function RegexTester() {
 
   return (
     <Box sx={{ height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
-      <Helmet>
+      <Head>
         <title>Regex Tester - Dev Tools</title>
         <meta name="description" content="Test regular expressions against sample text. Highlight matches and capture groups." />
-      </Helmet>
+      </Head>
       <Typography variant="h4" gutterBottom sx={{ pl: 2, pt: 2 }}>
         Regex Tester
       </Typography>
@@ -99,14 +56,12 @@ export default function RegexTester() {
               helperText={error}
               sx={{ mb: 2 }}
             />
-            <TextField
-              label="Sample Text"
-              multiline
-              fullWidth
+            <Editor
+              height="100%"
+              language="text"
+              theme="vs-dark"
               value={text}
-              onChange={(e) => setText(e.target.value)}
-              variant="outlined"
-              sx={{ flexGrow: 1, '& .MuiInputBase-root': { height: '100%' }, '& .MuiInputBase-input': { height: '100% !important' } }}
+              onChange={(value) => setText(value)}
             />
           </Paper>
         </Box>
@@ -114,8 +69,14 @@ export default function RegexTester() {
           <Typography variant="h5" gutterBottom>
             Result
           </Typography>
-          <Paper elevation={3} sx={{ p: 2, flexGrow: 1, backgroundColor: '#2d2d2d', overflow: 'auto' }}>
-            <MatchHighlighter text={text} matches={matches} />
+          <Paper elevation={3} sx={{ flexGrow: 1, backgroundColor: '#2d2d2d', overflow: 'auto' }}>
+            <Editor
+              height="100%"
+              language="text"
+              theme="vs-dark"
+              value={text}
+              options={{ readOnly: true, domReadOnly: true }}
+            />
           </Paper>
         </Box>
         <Box sx={{ width: '33.33%', p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -134,9 +95,13 @@ export default function RegexTester() {
                       {match.slice(1).map((group, groupIndex) => (
                         <Box key={groupIndex} sx={{ mb: 1 }}>
                           <Typography variant="subtitle1">Group {groupIndex + 1}</Typography>
-                          <SyntaxHighlighter language="text" style={tomorrow}>
-                            {group || ''}
-                          </SyntaxHighlighter>
+                          <Editor
+                            height="100px"
+                            language="text"
+                            theme="vs-dark"
+                            value={group || ''}
+                            options={{ readOnly: true, domReadOnly: true, minimap: { enabled: false } }}
+                          />
                         </Box>
                       ))}
                     </Box>

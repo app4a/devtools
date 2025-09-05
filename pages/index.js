@@ -11,9 +11,8 @@ import {
   AccordionDetails
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Link } from 'react-router-dom';
-
-import { Helmet } from 'react-helmet-async';
+import Link from 'next/link';
+import Head from 'next/head';
 
 const toolCategories = [
   {
@@ -53,10 +52,10 @@ const toolCategories = [
 function HomePage() {
   return (
     <Box sx={{ p: 2 }}>
-      <Helmet>
+      <Head>
         <title>Dev Tools - A Collection of Developer Utilities</title>
         <meta name="description" content="A comprehensive suite of online developer tools including JSON formatter, Diff tool, Base64 encoder/decoder, Hash generator, and more." />
-      </Helmet>
+      </Head>
       <Typography variant="h4" component="h1" gutterBottom>
         Welcome to Dev Tools
       </Typography>
@@ -81,12 +80,14 @@ function HomePage() {
               <List component="div" disablePadding>
                 {category.tools.map((tool) => (
                   <React.Fragment key={tool.name}>
-                    <ListItem component={Link} to={tool.path} sx={{ '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' } }}>
-                      <ListItemText
-                        primary={<Typography variant="body1">{tool.name}</Typography>}
-                        secondary={<Typography variant="body2" color="text.secondary">{tool.description}</Typography>}
-                      />
-                    </ListItem>
+                    <Link href={tool.path} passHref>
+                      <ListItem sx={{ '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' } }}>
+                        <ListItemText
+                          primary={<Typography variant="body1">{tool.name}</Typography>}
+                          secondary={<Typography variant="body2" color="text.secondary">{tool.description}</Typography>}
+                        />
+                      </ListItem>
+                    </Link>
                     <Divider component="li" />
                   </React.Fragment>
                 ))}

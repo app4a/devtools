@@ -18,7 +18,7 @@ import { format, fromUnixTime, getUnixTime, isValid } from 'date-fns';
 import { toZonedTime, fromZonedTime, formatInTimeZone } from 'date-fns-tz';
 
 
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
 // A simplified list of common timezones
 const timezones = [
@@ -100,10 +100,10 @@ function TimestampConverter() {
 
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
-      <Helmet>
+      <Head>
         <title>Timestamp Converter - Dev Tools</title>
         <meta name="description" content="Convert Unix timestamps to human-readable dates and vice-versa, supporting various time zones." />
-      </Helmet>
+      </Head>
       <Typography variant="h4" gutterBottom>
         Timestamp Converter
       </Typography>

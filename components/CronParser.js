@@ -12,7 +12,7 @@ import {
 import cronstrue from 'cronstrue';
 import { parseExpression } from 'cron-parser';
 
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
 export default function CronParser() {
   const [cronExpression, setCronExpression] = useState('0 0 * * *'); // Sample: Every day at midnight
@@ -46,10 +46,10 @@ export default function CronParser() {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Helmet>
+      <Head>
         <title>Cron Expression Parser - Dev Tools</title>
         <meta name="description" content="Parse cron expressions and get human-readable descriptions and upcoming dates." />
-      </Helmet>
+      </Head>
       <Typography variant="h4" gutterBottom>
         Cron Expression Parser
       </Typography>

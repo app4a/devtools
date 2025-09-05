@@ -21,8 +21,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
-
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
 // A simplified list of major cities and their IANA time zone IDs
 // In a real app, this would come from an API or a more comprehensive list
@@ -54,7 +53,9 @@ export default function WorldTime() {
   const [selectedTimezone, setSelectedTimezone] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [use24HourFormat, setUse24HourFormat] = useState(true);
-  const [cities, setCities] = useState(() => {
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
     const storedCities = localStorage.getItem('worldTimeCities');
     if (storedCities) {
       const parsedCities = JSON.parse(storedCities);
@@ -80,21 +81,23 @@ export default function WorldTime() {
       if (!localFound) {
         uniqueCities.unshift({ name: 'Local Time', timezone: localTimezone, isLocal: true });
       }
-      return uniqueCities;
+      setCities(uniqueCities);
     } else {
       const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      return [
+      setCities([
         { name: 'Local Time', timezone: localTimezone, isLocal: true },
         { name: 'New York', timezone: 'America/New_York' },
         { name: 'London', timezone: 'Europe/London' },
         { name: 'Tokyo', timezone: 'Asia/Tokyo' },
         { name: 'Sydney', timezone: 'Australia/Sydney' },
-      ];
+      ]);
     }
-  });
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem('worldTimeCities', JSON.stringify(cities));
+    if (cities.length > 0) {
+      localStorage.setItem('worldTimeCities', JSON.stringify(cities));
+    }
   }, [cities]);
 
   const getFormattedTime = useCallback((time, timezone) => {
@@ -129,10 +132,10 @@ export default function WorldTime() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-      <Helmet>
+      <Head>
         <title>World Time - Dev Tools</title>
         <meta name="description" content="View current times in various cities around the world." />
-      </Helmet>
+      </Head>
       <Paper sx={{ p: 2, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', flexDirection: 'column', gap: 2 }} elevation={0}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ color: '#ffffff' }}>Reference Time:</Typography>
@@ -239,4 +242,3 @@ export default function WorldTime() {
     </Box>
   );
 }
-
