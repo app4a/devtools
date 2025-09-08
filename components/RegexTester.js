@@ -10,24 +10,40 @@ import {
   AccordionDetails
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Editor from '@monaco-editor/react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Head from 'next/head';
 
 export default function RegexTester() {
   const [regex, setRegex] = useState('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)');
   const [text, setText] = useState('You can contact me at test@example.com or my.other.email@domain.co.uk.');
 
-  const { matches, error } = useMemo(() => {
+  const { matches, error, highlightedText } = useMemo(() => {
     if (!regex || !text) {
-      return { matches: [], error: null };
+      return { matches: [], error: null, highlightedText: text };
     }
 
     try {
       const re = new RegExp(regex, 'g');
       const allMatches = Array.from(text.matchAll(re));
-      return { matches: allMatches, error: null };
+      let lastIndex = 0;
+      const parts = [];
+      for (const match of allMatches) {
+        if (match.index > lastIndex) {
+          parts.push(text.substring(lastIndex, match.index));
+        }
+        parts.push(<mark key={match.index}>{match[0]}</mark>);
+        lastIndex = match.index + match[0].length;
+      }
+      if (lastIndex < text.length) {
+        parts.push(text.substring(lastIndex));
+      }
+      
+      const highlighted = <>{parts}</>;
+
+      return { matches: allMatches, error: null, highlightedText: highlighted };
     } catch (e) {
-      return { matches: [], error: e.message };
+      return { matches: [], error: e.message, highlightedText: text };
     }
   }, [regex, text]);
 
@@ -56,12 +72,15 @@ export default function RegexTester() {
               helperText={error}
               sx={{ mb: 2 }}
             />
-            <Editor
-              height="100%"
-              language="text"
-              theme="vs-dark"
+            <TextField
+              label="Text"
+              fullWidth
+              multiline
+              rows={10}
               value={text}
-              onChange={(value) => setText(value)}
+              onChange={(e) => setText(e.target.value)}
+              variant="outlined"
+              sx={{ flexGrow: 1 }}
             />
           </Paper>
         </Box>
@@ -69,14 +88,10 @@ export default function RegexTester() {
           <Typography variant="h5" gutterBottom>
             Result
           </Typography>
-          <Paper elevation={3} sx={{ flexGrow: 1, backgroundColor: '#2d2d2d', overflow: 'auto' }}>
-            <Editor
-              height="100%"
-              language="text"
-              theme="vs-dark"
-              value={text}
-              options={{ readOnly: true, domReadOnly: true }}
-            />
+          <Paper elevation={3} sx={{ flexGrow: 1, backgroundColor: '#1e1e1e', overflow: 'auto', p: 2 }}>
+            <Typography component="div" sx={{ whiteSpace: 'pre-wrap' }}>
+              {highlightedText}
+            </Typography>
           </Paper>
         </Box>
         <Box sx={{ width: '33.33%', p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -95,13 +110,9 @@ export default function RegexTester() {
                       {match.slice(1).map((group, groupIndex) => (
                         <Box key={groupIndex} sx={{ mb: 1 }}>
                           <Typography variant="subtitle1">Group {groupIndex + 1}</Typography>
-                          <Editor
-                            height="100px"
-                            language="text"
-                            theme="vs-dark"
-                            value={group || ''}
-                            options={{ readOnly: true, domReadOnly: true, minimap: { enabled: false } }}
-                          />
+                          <SyntaxHighlighter language="text" style={vscDarkPlus} customStyle={{height: '100px'}}>
+                            {group || ''}
+                          </SyntaxHighlighter>
                         </Box>
                       ))}
                     </Box>
