@@ -33,15 +33,6 @@ function MyApp({ Component, pageProps }) {
         <Box sx={{ display: 'flex' }}>
           <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerToggle}
-                edge="start"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
               <Typography variant="h6" noWrap component="div">
                 Dev Tools
               </Typography>
@@ -50,7 +41,8 @@ function MyApp({ Component, pageProps }) {
           <Sidebar 
             open={open} 
             drawerWidth={drawerWidth} 
-            collapsedDrawerWidth={collapsedDrawerWidth} 
+            collapsedDrawerWidth={collapsedDrawerWidth}
+            handleDrawerToggle={handleDrawerToggle}
           />
           <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
             <Component {...pageProps} />

@@ -9,45 +9,17 @@ import {
   AccordionDetails,
   Typography,
   Box,
-  styled
+  styled,
+  IconButton,
+  Toolbar,
+  Divider
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from 'next/link';
 
-const toolCategories = [
-  {
-    name: 'Text Tools',
-    tools: [
-      { name: 'JSON Formatter', path: '/json' },
-      { name: 'Diff Tool', path: '/diff' },
-      { name: 'Multiline Formatter', path: '/multiline' },
-      { name: 'Regex Tester', path: '/regex' },
-      { name: 'Base64 Encoder/Decoder', path: '/base64' },
-      { name: 'URL Encoder/Decoder', path: '/url' },
-    ],
-  },
-  {
-    name: 'Security Tools',
-    tools: [
-      { name: 'Hash Generator', path: '/hash' },
-      { name: 'JWT Decoder', path: '/jwt' },
-    ],
-  },
-  {
-    name: 'Date & Time Tools',
-    tools: [
-      { name: 'World Time', path: '/worldtime' },
-      { name: 'Timestamp Converter', path: '/timestamp' },
-      { name: 'Cron Expression Parser', path: '/cron' },
-    ],
-  },
-  {
-    name: 'Color Tools',
-    tools: [
-      { name: 'Color Converter', path: '/color' },
-    ],
-  },
-];
+import { toolCategories } from '../data/tools';
 
 const openedMixin = (theme, drawerWidth) => ({
   width: drawerWidth,
@@ -82,10 +54,17 @@ const StyledDrawer = styled(Drawer, { shouldForwardProp: (prop) => prop !== 'dra
   }),
 }));
 
-export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth }) {
+export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth, handleDrawerToggle }) {
   return (
     <StyledDrawer variant="permanent" open={open} drawerWidth={drawerWidth} collapsedDrawerWidth={collapsedDrawerWidth}>
-      <Box sx={{ mt: 8, overflowY: 'auto' }}>
+      <Toolbar />
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', py: 1 }}>
+        <IconButton onClick={handleDrawerToggle}>
+          {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </IconButton>
+      </Box>
+      <Divider />
+      <Box sx={{ overflowY: 'auto' }}>
         <List>
           {open ? (
             toolCategories.map((category) => (
