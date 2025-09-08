@@ -14,7 +14,7 @@ import { parseExpression } from 'cron-parser';
 
 import Head from 'next/head';
 
-export default function CronParser() {
+export default function CronParser({ name, description }) {
   const [cronExpression, setCronExpression] = useState('0 0 * * *'); // Sample: Every day at midnight
   const [humanReadable, setHumanReadable] = useState('');
   const [nextDates, setNextDates] = useState([]);
@@ -47,11 +47,11 @@ export default function CronParser() {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>Cron Expression Parser - Dev Tools</title>
-        <meta name="description" content="Parse cron expressions and get human-readable descriptions and upcoming dates." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
-        Cron Expression Parser
+        {name}
       </Typography>
       <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
         <TextField

@@ -9,7 +9,7 @@ import {
 
 import Head from 'next/head';
 
-export default function QuoteMultiline() {
+export default function MultilineFormatter({ name, description }) {
   const [inputText, setInputText] = useState('');
   const [wrapChar, setWrapChar] = useState("'");
   const [outputText, setOutputText] = useState('');
@@ -35,9 +35,12 @@ export default function QuoteMultiline() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Head>
-        <title>Multiline Formatter - Dev Tools</title>
-        <meta name="description" content="Format multiline strings, useful for SQL queries or code snippets." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
+      <Typography variant="h4" gutterBottom>
+        {name}
+      </Typography>
       <Paper sx={{ p: 1, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', alignItems: 'center' }} elevation={0}>
         <Typography variant="body2" sx={{ml: 2, color: '#ffffff', flexGrow: 1}}>Paste Multiline Text</Typography>
         <TextField

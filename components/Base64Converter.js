@@ -10,7 +10,7 @@ import {
 
 import Head from 'next/head';
 
-export default function Base64Converter() {
+export default function Base64Converter({ name, description }) {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [mode, setMode] = useState('encode'); // 'encode' or 'decode'
@@ -34,11 +34,11 @@ export default function Base64Converter() {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>Base64 Encoder/Decoder - Dev Tools</title>
-        <meta name="description" content="Encode or decode text using Base64." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
-        Base64 Encoder/Decoder
+        {name}
       </Typography>
       <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
         <ToggleButtonGroup

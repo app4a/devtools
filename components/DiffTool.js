@@ -9,7 +9,7 @@ import {
 
 import Head from 'next/head';
 
-export default function DiffTool() {
+export default function DiffTool({ name, description }) {
   const [originalText, setOriginalText] = useState('');
   const [modifiedText, setModifiedText] = useState('');
 
@@ -31,9 +31,12 @@ export default function DiffTool() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Head>
-        <title>Diff Tool - Dev Tools</title>
-        <meta name="description" content="Compare two text inputs and highlight the differences." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
+      <Typography variant="h4" gutterBottom>
+        {name}
+      </Typography>
       <Paper sx={{ p: 1, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d' }} elevation={0}>
         <Typography variant="body2" sx={{ml: 2, color: '#ffffff'}}>Paste Text to Compare</Typography>
       </Paper>

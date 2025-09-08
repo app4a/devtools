@@ -58,7 +58,7 @@ const LineNumberedEditor = ({ value, onValueChange, readOnly, placeholder }) => 
   );
 };
 
-export default function JsonFormatter() {
+export default function JsonFormatter({ name, description }) {
   const [rawJson, setRawJson] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -83,37 +83,42 @@ export default function JsonFormatter() {
   };
 
   return (
-    <Box sx={{ display: 'flex', p: 2, gap: 2 }}>
+    <Box sx={{ display: 'flex', p: 2, gap: 2, flexDirection: 'column' }}>
       <Head>
-        <title>JSON Formatter - Dev Tools</title>
-        <meta name="description" content="Format and validate JSON data for better readability and debugging." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
+      <Typography variant="h4" gutterBottom>
+        {name}
+      </Typography>
       <style>{`
         .readonly-textarea {
           color: ${error ? 'red' : 'inherit'} !important;
         }
       `}</style>
-      <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
-        <Typography variant="h6" gutterBottom>Raw JSON</Typography>
-        <LineNumberedEditor
-          value={rawJson}
-          onValueChange={setRawJson}
-          placeholder="Paste your JSON here"
-        />
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, position: 'relative', overflow: 'hidden' }}>
-        <Typography variant="h6" gutterBottom>Formatted</Typography>
-        <IconButton
-          onClick={handleCopy}
-          disabled={!formattedJson}
-          sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }}
-        >
-          <ContentCopyIcon />
-        </IconButton>
-        <LineNumberedEditor
-          value={error || formattedJson}
-          readOnly
-        />
+      <Box sx={{ display: 'flex', flex: 1, gap: 2, overflow: 'hidden' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+          <Typography variant="h6" gutterBottom>Raw JSON</Typography>
+          <LineNumberedEditor
+            value={rawJson}
+            onValueChange={setRawJson}
+            placeholder="Paste your JSON here"
+          />
+        </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, position: 'relative', overflow: 'hidden' }}>
+          <Typography variant="h6" gutterBottom>Formatted</Typography>
+          <IconButton
+            onClick={handleCopy}
+            disabled={!formattedJson}
+            sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }}
+          >
+            <ContentCopyIcon />
+          </IconButton>
+          <LineNumberedEditor
+            value={error || formattedJson}
+            readOnly
+          />
+        </Box>
       </Box>
       <Snackbar
         open={openSnackbar}

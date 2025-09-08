@@ -14,7 +14,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Head from 'next/head';
 
-export default function RegexTester() {
+export default function RegexTester({ name, description }) {
   const [regex, setRegex] = useState('([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)');
   const [text, setText] = useState('You can contact me at test@example.com or my.other.email@domain.co.uk.');
 
@@ -50,11 +50,11 @@ export default function RegexTester() {
   return (
     <Box sx={{ height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
       <Head>
-        <title>Regex Tester - Dev Tools</title>
-        <meta name="description" content="Test regular expressions against sample text. Highlight matches and capture groups." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom sx={{ pl: 2, pt: 2 }}>
-        Regex Tester
+        {name}
       </Typography>
       <Box sx={{ display: 'flex', flexGrow: 1 }}>
         <Box sx={{ width: '33.33%', p: 2, display: 'flex', flexDirection: 'column' }}>

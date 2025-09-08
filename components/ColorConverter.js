@@ -62,7 +62,7 @@ const hexToHsl = (hex) => {
   return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
 };
 
-export default function ColorConverter() {
+export default function ColorConverter({ name, description }) {
   const [hexColor, setHexColor] = useState('#1976d2'); // Default to Material UI primary color
   const [rgbColor, setRgbColor] = useState('');
   const [hslColor, setHslColor] = useState('');
@@ -117,11 +117,11 @@ export default function ColorConverter() {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>Color Converter - Dev Tools</title>
-        <meta name="description" content="Convert between HEX, RGB, and HSL color formats. Includes a color picker for convenience." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
-        Color Converter
+        {name}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={7}>

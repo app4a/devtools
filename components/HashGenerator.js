@@ -16,7 +16,7 @@ import CryptoJS from 'crypto-js';
 
 import Head from 'next/head';
 
-export default function HashGenerator() {
+export default function HashGenerator({ name, description }) {
   const [text, setText] = useState('');
   const [hashes, setHashes] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -46,11 +46,11 @@ export default function HashGenerator() {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>Hash Generator - Dev Tools</title>
-        <meta name="description" content="Generate hashes like MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160 for text." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
-        Hash Generator
+        {name}
       </Typography>
       <Paper elevation={3} sx={{ p: 2 }}>
         <TextField

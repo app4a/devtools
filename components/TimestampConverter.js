@@ -45,7 +45,7 @@ const timezones = [
   { value: 'Pacific/Auckland', label: 'Pacific/Auckland (NZST/NZDT)' },
 ];
 
-function TimestampConverter() {
+function TimestampConverter({ name, description }) {
   const initialDate = fromUnixTime(1678886400); // March 15, 2023 12:00:00 PM UTC
   const [date, setDate] = useState(initialDate);
   const [selectedTimezone, setSelectedTimezone] = useState(timezones[0].value);
@@ -101,11 +101,11 @@ function TimestampConverter() {
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Head>
-        <title>Timestamp Converter - Dev Tools</title>
-        <meta name="description" content="Convert Unix timestamps to human-readable dates and vice-versa, supporting various time zones." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
-        Timestamp Converter
+        {name}
       </Typography>
       <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
         <Grid container spacing={1}>

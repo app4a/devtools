@@ -48,7 +48,7 @@ const allTimezones = [
   { name: 'Honolulu', timezone: 'Pacific/Honolulu' },
 ];
 
-export default function WorldTime() {
+export default function WorldTime({ name, description }) {
   const [referenceTime, setReferenceTime] = useState(new Date());
   const [selectedTimezone, setSelectedTimezone] = useState(null);
   const [inputValue, setInputValue] = useState('');
@@ -133,9 +133,12 @@ export default function WorldTime() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Head>
-        <title>World Time - Dev Tools</title>
-        <meta name="description" content="View current times in various cities around the world." />
+        <title>{name} - Dev Tools</title>
+        <meta name="description" content={description} />
       </Head>
+      <Typography variant="h4" gutterBottom>
+        {name}
+      </Typography>
       <Paper sx={{ p: 2, borderBottom: '1px solid #444', backgroundColor: '#2d2d2d', display: 'flex', flexDirection: 'column', gap: 2 }} elevation={0}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body1" sx={{ color: '#ffffff' }}>Reference Time:</Typography>
