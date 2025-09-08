@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Drawer,
   List,
@@ -18,6 +18,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { toolCategories } from '../data/tools';
 
@@ -55,6 +56,22 @@ const StyledDrawer = styled(Drawer, { shouldForwardProp: (prop) => prop !== 'dra
 }));
 
 export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth, handleDrawerToggle }) {
+  const router = useRouter();
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const currentCategory = toolCategories.find(category => 
+      category.tools.some(tool => tool.path === router.pathname)
+    );
+    if (currentCategory) {
+      setExpanded(currentCategory.name);
+    }
+  }, [router.pathname]);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   return (
     <StyledDrawer variant="permanent" open={open} drawerWidth={drawerWidth} collapsedDrawerWidth={collapsedDrawerWidth}>
       <Toolbar />
@@ -68,7 +85,7 @@ export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth, handl
         <List>
           {open ? (
             toolCategories.map((category) => (
-              <Accordion key={category.name} elevation={0} sx={{ backgroundColor: 'inherit' }}>
+              <Accordion key={category.name} elevation={0} sx={{ backgroundColor: 'inherit' }} expanded={expanded === category.name} onChange={handleChange(category.name)}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`${category.name}-content`}
@@ -79,7 +96,7 @@ export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth, handl
                 <AccordionDetails sx={{ p: 0 }}>
                   <List component="div" disablePadding>
                     {category.tools.map((tool) => (
-                      <ListItem component={Link} href={tool.path} key={tool.name} sx={{ pl: 4 }}>
+                      <ListItem component={Link} href={tool.path} key={tool.name} sx={{ pl: 4, ...(router.pathname === tool.path && { backgroundColor: 'rgba(255, 255, 255, 0.1)' }) }}>
                         <ListItemText primary={tool.name} />
                       </ListItem>
                     ))}
