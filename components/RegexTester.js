@@ -50,7 +50,7 @@ export default function RegexTester({ name, description }) {
   return (
     <Box sx={{ height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
       <Head>
-        <title>{name} - Dev Tools</title>
+        <title>{`${name} - Dev Tools`}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom sx={{ pl: 2, pt: 2 }}>

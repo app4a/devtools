@@ -85,7 +85,7 @@ export default function JsonFormatter({ name, description }) {
   return (
     <Box sx={{ display: 'flex', p: 2, gap: 2, flexDirection: 'column' }}>
       <Head>
-        <title>{name} - Dev Tools</title>
+        <title>{`${name} - Dev Tools`}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

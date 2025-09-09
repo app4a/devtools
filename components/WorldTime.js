@@ -146,7 +146,7 @@ export default function WorldTime({ name, description }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Head>
-        <title>{name} - Dev Tools</title>
+        <title>{`${name} - Dev Tools`}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

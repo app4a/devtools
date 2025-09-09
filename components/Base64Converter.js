@@ -34,7 +34,7 @@ export default function Base64Converter({ name, description }) {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>{name} - Dev Tools</title>
+        <title>{`${name} - Dev Tools`}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

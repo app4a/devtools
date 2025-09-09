@@ -12,6 +12,7 @@ import Head from 'next/head';
 export default function MultilineFormatter({ name, description }) {
   const [inputText, setInputText] = useState('');
   const [wrapChar, setWrapChar] = useState("'");
+  const [endsWith, setEndsWith] = useState(',');
   const [outputText, setOutputText] = useState('');
 
   useEffect(() => {
@@ -21,21 +22,17 @@ export default function MultilineFormatter({ name, description }) {
     }
 
     const lines = inputText.split('\n');
-    const wrappedLines = lines.map((line, index) => {
+    const wrappedLines = lines.map((line) => {
       const wrappedLine = `${wrapChar}${line}${wrapChar}`;
-      if (index === lines.length - 1) {
-        return wrappedLine;
-      } else {
-        return `${wrappedLine},`;
-      }
+      return `${wrappedLine}${endsWith}`;
     });
     setOutputText(wrappedLines.join('\n'));
-  }, [inputText, wrapChar]);
+  }, [inputText, wrapChar, endsWith]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
       <Head>
-        <title>{name} - Dev Tools</title>
+        <title>{`${name} - Dev Tools`}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>
@@ -49,6 +46,24 @@ export default function MultilineFormatter({ name, description }) {
           size="small"
           value={wrapChar}
           onChange={(e) => setWrapChar(e.target.value)}
+          sx={{
+            mr: 2,
+            backgroundColor: '#1e1e1e',
+            input: { color: '#ffffff' },
+            label: { color: '#ffffff' },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#444',
+              },
+            },
+          }}
+        />
+        <TextField
+          label="Ends with"
+          variant="outlined"
+          size="small"
+          value={endsWith}
+          onChange={(e) => setEndsWith(e.target.value)}
           sx={{
             mr: 2,
             backgroundColor: '#1e1e1e',
