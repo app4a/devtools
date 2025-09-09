@@ -12,7 +12,8 @@ import {
   Chip,
   Grid,
   Card,
-  CardContent
+  CardContent,
+  Button
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
@@ -171,6 +172,66 @@ function HomePage() {
           </Accordion>
         ))}
       </List>
+
+      <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4 }}>
+        📚 Developer Resources:
+      </Typography>
+      
+      <Grid container spacing={2} sx={{ mt: 2 }}>
+        <Grid item xs={12} md={4}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom color="primary">
+                📖 Developer Blog
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Expert guides, tutorials, and best practices for web development. Learn JSON formatting, Base64 encoding, JWT security, and more.
+              </Typography>
+              <Link href="/blog" passHref>
+                <Button variant="outlined" color="primary" fullWidth>
+                  Read Articles →
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        
+        <Grid item xs={12} md={4}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom color="primary">
+                ❓ FAQ & Help
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Get answers to common questions about our developer tools. Find help with JSON formatting, Base64 encoding, and more.
+              </Typography>
+              <Link href="/faq" passHref>
+                <Button variant="outlined" color="primary" fullWidth>
+                  Get Help →
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        
+        <Grid item xs={12} md={4}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom color="primary">
+                ⚖️ Tools Comparison
+              </Typography>
+              <Typography variant="body2" paragraph>
+                See how our free, privacy-focused tools compare to popular alternatives. Discover why developers choose our platform.
+              </Typography>
+              <Link href="/tools-comparison" passHref>
+                <Button variant="outlined" color="primary" fullWidth>
+                  Compare Tools →
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

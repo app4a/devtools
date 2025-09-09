@@ -31,4 +31,12 @@ export const toolCategories = [
       { name: 'Color Converter', path: '/color', description: 'Convert between HEX, RGB, HSL & Include a color picker for convenience.' },
     ],
   },
+  {
+    name: 'Resources',
+    tools: [
+      { name: 'Developer Blog', path: '/blog', description: 'Guides, tutorials, and best practices for web development.' },
+      { name: 'FAQ & Help', path: '/faq', description: 'Frequently asked questions and help for using our tools.' },
+      { name: 'Tools Comparison', path: '/tools-comparison', description: 'Compare our free tools with popular alternatives.' },
+    ],
+  },
 ];
