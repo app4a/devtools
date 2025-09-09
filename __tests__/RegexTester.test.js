@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import RegexTester from '../components/RegexTester';
 
 // Mock navigator.clipboard
@@ -111,7 +111,10 @@ describe('RegexTester', () => {
     render(<RegexTester name="Regex Tester" description="Test regular expressions." />);
     
     const copyButton = screen.getAllByTestId('ContentCopyIcon')[0].closest('button');
-    fireEvent.click(copyButton);
+    
+    await act(async () => {
+      fireEvent.click(copyButton);
+    });
     
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
   });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import QrCodeGenerator from '../components/QrCodeGenerator';
 
@@ -33,13 +33,13 @@ describe('QrCodeGenerator', () => {
     
     expect(screen.getByText('Customization')).toBeInTheDocument();
     expect(screen.getByText(/Size:/)).toBeInTheDocument();
-    expect(screen.getAllByText('Error Correction')).toHaveLength(2); // Label and legend
+    expect(screen.getAllByText('Error Correction')).toHaveLength(3); // Label, select label, and table
   });
 
   it('shows QR code types guide', () => {
     render(<QrCodeGenerator name="QR Code Generator" description="Generate QR codes" />);
     
-    expect(screen.getByText('QR Code Types')).toBeInTheDocument();
+    expect(screen.getByText('QR Code Types & Formats')).toBeInTheDocument();
     expect(screen.getByText(/URL:/)).toBeInTheDocument();
     expect(screen.getByText(/WiFi:/)).toBeInTheDocument();
     expect(screen.getByText(/Email:/)).toBeInTheDocument();
@@ -48,15 +48,18 @@ describe('QrCodeGenerator', () => {
   it('has download button', () => {
     render(<QrCodeGenerator name="QR Code Generator" description="Generate QR codes" />);
     
-    const downloadButton = screen.getByText('Download QR Code');
+    const downloadButton = screen.getByText(/Download PNG/);
     expect(downloadButton).toBeInTheDocument();
   });
 
-  it('updates text input when typing', () => {
+  it('updates text input when typing', async () => {
     render(<QrCodeGenerator name="QR Code Generator" description="Generate QR codes" />);
     
     const textInput = screen.getByRole('textbox');
-    fireEvent.change(textInput, { target: { value: 'https://example.com' } });
+    
+    await act(async () => {
+      fireEvent.change(textInput, { target: { value: 'https://example.com' } });
+    });
     
     expect(textInput.value).toBe('https://example.com');
   });

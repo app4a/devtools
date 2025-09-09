@@ -40,7 +40,7 @@ import {
   LinearProgress
 } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider, DateTimePicker, TimePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider, DatePicker, DateTimePicker, TimePicker } from '@mui/x-date-pickers';
 import { format as formatTz, toZonedTime } from 'date-fns-tz';
 import { format, addDays, differenceInHours, parseISO } from 'date-fns';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -129,7 +129,8 @@ export default function WorldTime({ name, description }) {
   const [currentTab, setCurrentTab] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [meetingTime, setMeetingTime] = useState(new Date());
+  const [meetingDate, setMeetingDate] = useState(new Date());
+  const [selectedMeetingCities, setSelectedMeetingCities] = useState([]);
   const [fromTimezone, setFromTimezone] = useState('America/New_York');
   const [toTimezone, setToTimezone] = useState('Europe/London');
   const [convertTime, setConvertTime] = useState(new Date());
@@ -191,6 +192,11 @@ export default function WorldTime({ name, description }) {
     if (cities.length > 0) {
       localStorage.setItem('worldTimeCities', JSON.stringify(cities));
     }
+  }, [cities]);
+
+  // Initialize selected meeting cities when cities change
+  useEffect(() => {
+    setSelectedMeetingCities(cities);
   }, [cities]);
 
   const getFormattedTime = useCallback((time, timezone) => {
@@ -258,17 +264,17 @@ export default function WorldTime({ name, description }) {
     URL.revokeObjectURL(url);
   };
 
-  const findBestMeetingTime = () => {
-    if (cities.length < 2) return [];
+  const bestMeetingTimes = useMemo(() => {
+    if (selectedMeetingCities.length < 2) return [];
     
     const suggestions = [];
     const timeSlots = Array.from({ length: 24 }, (_, hour) => hour);
     
     timeSlots.forEach(hour => {
-      const meetingDateTime = new Date(meetingTime);
+      const meetingDateTime = new Date(meetingDate);
       meetingDateTime.setHours(hour, 0, 0, 0);
       
-      const cityTimes = cities.map(city => {
+      const cityTimes = selectedMeetingCities.map(city => {
         const cityTime = toZonedTime(meetingDateTime, city.timezone);
         const cityHour = cityTime.getHours();
         const isBusinessHours = cityHour >= businessHours.start && cityHour < businessHours.end;
@@ -284,7 +290,7 @@ export default function WorldTime({ name, description }) {
       });
       
       const businessHoursCount = cityTimes.filter(ct => ct.isBusinessHours).length;
-      const score = businessHoursCount / cities.length;
+      const score = businessHoursCount / selectedMeetingCities.length;
       
       if (score > 0) {
         suggestions.push({
@@ -297,7 +303,7 @@ export default function WorldTime({ name, description }) {
     });
     
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 5);
-  };
+  }, [meetingDate, selectedMeetingCities, businessHours.start, businessHours.end, use24HourFormat]);
 
   const timezoneRegions = useMemo(() => {
     const regions = {};
@@ -521,10 +527,10 @@ export default function WorldTime({ name, description }) {
               <Grid container spacing={3}>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DateTimePicker
-                      label="Meeting Date & Time"
-                      value={meetingTime}
-                      onChange={(newValue) => setMeetingTime(newValue)}
+                    <DatePicker
+                      label="Meeting Date"
+                      value={meetingDate}
+                      onChange={(newValue) => setMeetingDate(newValue)}
                       slotProps={{
                         textField: {
                           fullWidth: true
@@ -532,6 +538,10 @@ export default function WorldTime({ name, description }) {
                       }}
                     />
                   </LocalizationProvider>
+                  
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1, fontStyle: 'italic' }}>
+                    Select a date to find the best meeting times for that day. The algorithm will analyze all 24 hours to suggest optimal time slots.
+                  </Typography>
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <Alert severity="info">
@@ -543,8 +553,49 @@ export default function WorldTime({ name, description }) {
               {cities.length >= 2 && (
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="subtitle1" gutterBottom>
-                    Best Meeting Times (in {cities[0]?.name || 'first'} timezone):
+                    Select Cities for Meeting:
                   </Typography>
+                  
+                  <Alert severity="info" sx={{ mb: 2 }}>
+                    Select specific cities for this meeting. You can choose any combination from your world clock cities.
+                  </Alert>
+                  
+                  <Autocomplete
+                    multiple
+                    id="meeting-cities-select"
+                    options={cities}
+                    getOptionLabel={(city) => city.name}
+                    value={selectedMeetingCities}
+                    onChange={(event, newValue) => {
+                      setSelectedMeetingCities(newValue);
+                    }}
+                    isOptionEqualToValue={(option, value) => option.timezone === value.timezone}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Meeting Participants' Cities"
+                        placeholder="Select cities for this meeting"
+                      />
+                    )}
+                    renderTags={(tagValue, getTagProps) =>
+                      tagValue.map((option, index) => (
+                        <Chip
+                          key={option.timezone}
+                          label={option.name}
+                          {...getTagProps({ index })}
+                          color="primary"
+                          variant="outlined"
+                        />
+                      ))
+                    }
+                    sx={{ mb: 3 }}
+                  />
+                  
+                  {selectedMeetingCities.length >= 2 && (
+                    <>
+                      <Typography variant="subtitle1" gutterBottom>
+                        Best Meeting Times (in {selectedMeetingCities[0]?.name || 'first'} timezone):
+                      </Typography>
                   
                   <TableContainer>
                     <Table>
@@ -552,46 +603,60 @@ export default function WorldTime({ name, description }) {
                         <TableRow>
                           <TableCell>Meeting Time</TableCell>
                           <TableCell>Business Hours Coverage</TableCell>
-                          {cities.map(city => (
+                          {selectedMeetingCities.map(city => (
                             <TableCell key={city.timezone}>{city.name}</TableCell>
                           ))}
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {findBestMeetingTime().map((suggestion, index) => (
-                          <TableRow key={index}>
-                            <TableCell sx={{ fontFamily: 'monospace', fontWeight: 'bold' }}>
-                              {suggestion.meetingTime}
-                            </TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                <LinearProgress 
-                                  variant="determinate" 
-                                  value={suggestion.score * 100} 
-                                  sx={{ flexGrow: 1 }}
-                                />
-                                <Typography variant="body2">
-                                  {Math.round(suggestion.score * 100)}%
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                            {suggestion.cityTimes.map(cityTime => (
-                              <TableCell 
-                                key={cityTime.city}
-                                sx={{ 
-                                  fontFamily: 'monospace',
-                                  backgroundColor: cityTime.isBusinessHours ? 'success.light' : 'inherit',
-                                  color: cityTime.isBusinessHours ? 'success.contrastText' : 'inherit'
-                                }}
-                              >
-                                {cityTime.time}
+                        {bestMeetingTimes.length > 0 ? (
+                          bestMeetingTimes.map((suggestion, index) => (
+                            <TableRow key={index}>
+                              <TableCell sx={{ fontFamily: 'monospace', fontWeight: 'bold' }}>
+                                {suggestion.meetingTime}
                               </TableCell>
-                            ))}
+                              <TableCell>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                  <LinearProgress 
+                                    variant="determinate" 
+                                    value={suggestion.score * 100} 
+                                    sx={{ flexGrow: 1 }}
+                                  />
+                                  <Typography variant="body2">
+                                    {Math.round(suggestion.score * 100)}%
+                                  </Typography>
+                                </Box>
+                              </TableCell>
+                              {suggestion.cityTimes.map(cityTime => (
+                                <TableCell 
+                                  key={cityTime.city}
+                                  sx={{ 
+                                    fontFamily: 'monospace',
+                                    backgroundColor: cityTime.isBusinessHours ? 'success.light' : 'inherit',
+                                    color: cityTime.isBusinessHours ? 'success.contrastText' : 'inherit'
+                                  }}
+                                >
+                                  {cityTime.time}
+                                </TableCell>
+                              ))}
+                            </TableRow>
+                          ))
+                        ) : (
+                          <TableRow>
+                            <TableCell colSpan={selectedMeetingCities.length + 2} sx={{ textAlign: 'center', py: 4 }}>
+                              <Typography variant="body2" color="text.secondary">
+                                No suitable meeting times found for the selected date. 
+                                {selectedMeetingCities.length < 2 && " Select at least 2 cities for meeting suggestions."}
+                                {selectedMeetingCities.length >= 2 && " Try selecting a weekday or adjusting business hours."}
+                              </Typography>
+                            </TableCell>
                           </TableRow>
-                        ))}
+                        )}
                       </TableBody>
                     </Table>
-                  </TableContainer>
+                      </TableContainer>
+                    </>
+                  )}
                 </Box>
               )}
             </Paper>

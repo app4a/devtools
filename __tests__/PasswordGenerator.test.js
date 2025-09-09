@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PasswordGenerator from '../components/PasswordGenerator';
 
@@ -64,7 +64,10 @@ describe('PasswordGenerator', () => {
     // Find the first copy button (main password field copy button)
     const copyButtons = screen.getAllByTestId('ContentCopyIcon');
     const copyButton = copyButtons[0].closest('button');
-    fireEvent.click(copyButton);
+    
+    await act(async () => {
+      fireEvent.click(copyButton);
+    });
     
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
   });

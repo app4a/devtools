@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import Base64Converter from '../components/Base64Converter';
 
 // Mock navigator.clipboard
@@ -129,7 +129,10 @@ describe('Base64Converter', () => {
 
     // Find and click copy button
     const copyButton = screen.getByTestId('ContentCopyIcon').closest('button');
-    fireEvent.click(copyButton);
+    
+    await act(async () => {
+      fireEvent.click(copyButton);
+    });
 
     // Verify clipboard API was called
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('dGVzdA==');
