@@ -59,7 +59,7 @@ export default function CronParser({ name, description }) {
   return (
     <Box sx={{ p: 2 }}>
       <Head>
-        <title>{`${name} - Dev Tools`}</title>
+        <title>{name ? `${name} - Dev Tools` : 'Cron Parser - Dev Tools'}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

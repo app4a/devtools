@@ -114,7 +114,7 @@ function TimestampConverter({ name, description }) {
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Head>
-        <title>{`${name} - Dev Tools`}</title>
+        <title>{name ? `${name} - Dev Tools` : 'Timestamp Converter - Dev Tools'}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

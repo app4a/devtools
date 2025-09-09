@@ -69,7 +69,7 @@ export default function JwtDecoder({ name, description }) {
   return (
     <Box sx={{ p: 2, height: 'calc(100vh - 112px)', display: 'flex', flexDirection: 'column' }}>
       <Head>
-        <title>{`${name} - Dev Tools`}</title>
+        <title>{name ? `${name} - Dev Tools` : 'JWT Decoder - Dev Tools'}</title>
         <meta name="description" content={description} />
       </Head>
       <Typography variant="h4" gutterBottom>

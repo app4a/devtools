@@ -1,3 +1,18 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Block crawling of build artifacts and system files
+Disallow: /_next/
+Disallow: /static/
+Disallow: /build/
+Disallow: /out/
+Disallow: /*.json$
+
+# Allow important resources
+Allow: /manifest.json
+Allow: /favicon.ico
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://yourdevtools.com/sitemap.xml
