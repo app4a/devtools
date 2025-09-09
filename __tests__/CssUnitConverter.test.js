@@ -10,7 +10,14 @@ describe('CssUnitConverter', () => {
     expect(screen.getByText('CSS Unit Converter')).toBeInTheDocument();
     expect(screen.getByText('Convert CSS units')).toBeInTheDocument();
     expect(screen.getByText('Convert CSS Units')).toBeInTheDocument();
-    expect(screen.getByText('Conversion Results')).toBeInTheDocument();
+    expect(screen.getByText(/Conversion Results/)).toBeInTheDocument();
+    
+    // Check for new tabbed interface
+    expect(screen.getByText('Unit Converter')).toBeInTheDocument();
+    expect(screen.getByText('Visual Preview')).toBeInTheDocument();
+    expect(screen.getByText('CSS Generator')).toBeInTheDocument();
+    expect(screen.getByText('Responsive Analysis')).toBeInTheDocument();
+    expect(screen.getByText('Saved Presets')).toBeInTheDocument();
   });
 
   it('has input field for value', () => {
@@ -58,9 +65,10 @@ describe('CssUnitConverter', () => {
   it('shows unit type guide', () => {
     render(<CssUnitConverter name="CSS Unit Converter" description="Convert CSS units" />);
     
-    expect(screen.getByText('Unit Types')).toBeInTheDocument();
-    expect(screen.getByText(/Absolute:/)).toBeInTheDocument();
-    expect(screen.getByText(/Relative:/)).toBeInTheDocument();
-    expect(screen.getByText(/Viewport:/)).toBeInTheDocument();
+    expect(screen.getByText('CSS Unit Guide')).toBeInTheDocument();
+    expect(screen.getByText('Absolute Units')).toBeInTheDocument();
+    expect(screen.getByText('Relative Units')).toBeInTheDocument();
+    expect(screen.getByText('Viewport Units')).toBeInTheDocument();
+    expect(screen.getByText('Container Query Units')).toBeInTheDocument();
   });
 });

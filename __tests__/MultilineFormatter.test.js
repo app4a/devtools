@@ -1,69 +1,139 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import MultilineFormatter from '../components/MultilineFormatter';
 
+// Mock navigator.clipboard
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
+
 describe('MultilineFormatter', () => {
-  it('formats multiline text with default wrap character', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('renders multiline formatter interface', () => {
+    render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
+    
+    expect(screen.getByText('Multiline Formatter')).toBeInTheDocument();
+    expect(screen.getByText('Format multiline strings.')).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: 'Text Formatter' })).toBeInTheDocument();
+    expect(screen.getByText('Format Options')).toBeInTheDocument();
+  });
+
+  it('formats multiline text with default JavaScript array format', () => {
     render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
 
-    const inputTextarea = screen.getByPlaceholderText(/Input Text/i);
-    const outputTextarea = screen.getByPlaceholderText(/Output Text/i);
-
+    const inputTextarea = screen.getByPlaceholderText(/Paste your multiline text here/i);
+    
     fireEvent.change(inputTextarea, { target: { value: 'line1\nline2\nline3' } });
 
-    expect(outputTextarea).toHaveValue("'line1',\n'line2',\n'line3',");
+    // Find the output textarea (read-only)
+    const textareas = screen.getAllByRole('textbox');
+    const outputTextarea = textareas.find(textarea => textarea.readOnly);
+    
+    expect(outputTextarea.value).toContain("'line1'");
+    expect(outputTextarea.value).toContain("'line2'");
+    expect(outputTextarea.value).toContain("'line3'");
+    expect(outputTextarea.value).toMatch(/^\[/);
+    expect(outputTextarea.value).toMatch(/\]$/);
   });
 
-  it('formats multiline text with custom wrap character', () => {
+  it('shows format type selector', () => {
     render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
 
-    const inputTextarea = screen.getByPlaceholderText(/Input Text/i);
-    const wrapCharInput = screen.getByLabelText(/Wrap with/i);
-    const outputTextarea = screen.getByPlaceholderText(/Output Text/i);
+    const formatSelect = screen.getByRole('combobox');
+    expect(formatSelect).toBeInTheDocument();
+    
+    // Check that format options exist by looking for the JavaScript Array preset button
+    expect(screen.getByText('JavaScript Array')).toBeInTheDocument();
+    expect(screen.getByText('Python List')).toBeInTheDocument();
+    expect(screen.getByText('JSON Array')).toBeInTheDocument();
+  });
 
-    fireEvent.change(inputTextarea, { target: { value: 'itemA\nitemB' } });
+  it('changes wrap character', () => {
+    render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
+
+    const inputTextarea = screen.getByPlaceholderText(/Paste your multiline text here/i);
+    const wrapCharInput = screen.getByLabelText(/Wrap with/i);
+    
     fireEvent.change(wrapCharInput, { target: { value: '"' } });
+    fireEvent.change(inputTextarea, { target: { value: 'test1\ntest2' } });
 
-    expect(outputTextarea).toHaveValue("\"itemA\",\n\"itemB\",");
+    const textareas = screen.getAllByRole('textbox');
+    const outputTextarea = textareas.find(textarea => textarea.readOnly);
+    
+    expect(outputTextarea.value).toContain('"test1"');
+    expect(outputTextarea.value).toContain('"test2"');
   });
 
-  it('formats multiline text with custom ends with character', () => {
+  it('shows text analysis tab', () => {
     render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
 
-    const inputTextarea = screen.getByPlaceholderText(/Input Text/i);
-    const endsWithInput = screen.getByLabelText(/Ends with/i);
-    const outputTextarea = screen.getByPlaceholderText(/Output Text/i);
+    const inputTextarea = screen.getByPlaceholderText(/Paste your multiline text here/i);
+    fireEvent.change(inputTextarea, { target: { value: 'line1\nline2\nline3' } });
 
-    fireEvent.change(inputTextarea, { target: { value: 'apple\norange\nbanana' } });
-    fireEvent.change(endsWithInput, { target: { value: ';' } });
+    const analysisTab = screen.getByRole('tab', { name: 'Text Analysis' });
+    fireEvent.click(analysisTab);
 
-    expect(outputTextarea).toHaveValue("'apple';\n'orange';\n'banana';");
+    expect(screen.getAllByText('Text Analysis').length).toBeGreaterThan(0);
+    expect(screen.getByText('Basic Statistics')).toBeInTheDocument();
+    expect(screen.getByText('Line Analysis')).toBeInTheDocument();
   });
 
-  it('formats multiline text with custom wrap and ends with characters', () => {
+  it('shows quick presets', () => {
     render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
 
-    const inputTextarea = screen.getByPlaceholderText(/Input Text/i);
-    const wrapCharInput = screen.getByLabelText(/Wrap with/i);
-    const endsWithInput = screen.getByLabelText(/Ends with/i);
-    const outputTextarea = screen.getByPlaceholderText(/Output Text/i);
-
-    fireEvent.change(inputTextarea, { target: { value: 'red\ngreen\nblue' } });
-    fireEvent.change(wrapCharInput, { target: { value: '`' } });
-    fireEvent.change(endsWithInput, { target: { value: ' +' } });
-
-    expect(outputTextarea).toHaveValue("`red` +\n`green` +\n`blue` +");
+    expect(screen.getByText('Quick Presets')).toBeInTheDocument();
+    expect(screen.getByText('JavaScript Array')).toBeInTheDocument();
+    expect(screen.getByText('Python List')).toBeInTheDocument();
+    expect(screen.getByText('SQL IN Clause')).toBeInTheDocument();
   });
 
-  it('handles empty ends with character', () => {
+  it('applies preset when clicked', () => {
     render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
 
-    const inputTextarea = screen.getByPlaceholderText(/Input Text/i);
-    const endsWithInput = screen.getByLabelText(/Ends with/i);
-    const outputTextarea = screen.getByPlaceholderText(/Output Text/i);
+    const inputTextarea = screen.getByPlaceholderText(/Paste your multiline text here/i);
+    fireEvent.change(inputTextarea, { target: { value: 'a\nb\nc' } });
 
-    fireEvent.change(inputTextarea, { target: { value: 'first\nsecond\nthird' } });
-    fireEvent.change(endsWithInput, { target: { value: '' } });
+    const sqlPresetButton = screen.getByText('SQL IN Clause');
+    fireEvent.click(sqlPresetButton);
 
-    expect(outputTextarea).toHaveValue("'first'\n'second'\n'third'");
+    const textareas = screen.getAllByRole('textbox');
+    const outputTextarea = textareas.find(textarea => textarea.readOnly);
+    
+    expect(outputTextarea.value).toContain('IN (');
+  });
+
+  it('shows example data', () => {
+    render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
+
+    expect(screen.getByText('Example Data')).toBeInTheDocument();
+    expect(screen.getByText('Programming Languages')).toBeInTheDocument();
+    expect(screen.getByText('SQL Conditions')).toBeInTheDocument();
+  });
+
+  it('shows usage guide', () => {
+    render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
+
+    expect(screen.getByText('Usage Guide')).toBeInTheDocument();
+    expect(screen.getByText('Format Types')).toBeInTheDocument();
+    expect(screen.getByText('Custom Patterns')).toBeInTheDocument();
+    expect(screen.getByText('Quick Tips')).toBeInTheDocument();
+  });
+
+  it('toggles processing options', () => {
+    render(<MultilineFormatter name="Multiline Formatter" description="Format multiline strings." />);
+
+    const removeEmptyLinesSwitch = screen.getByLabelText(/Remove Empty Lines/i);
+    const trimLinesSwitch = screen.getByLabelText(/Trim Lines/i);
+    
+    expect(removeEmptyLinesSwitch).toBeChecked();
+    expect(trimLinesSwitch).toBeChecked();
+
+    fireEvent.click(removeEmptyLinesSwitch);
+    expect(removeEmptyLinesSwitch).not.toBeChecked();
   });
 });

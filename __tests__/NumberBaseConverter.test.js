@@ -10,7 +10,7 @@ describe('NumberBaseConverter', () => {
     expect(screen.getByText('Number Base Converter')).toBeInTheDocument();
     expect(screen.getByText('Convert number bases')).toBeInTheDocument();
     expect(screen.getByText('Number Conversion')).toBeInTheDocument();
-    expect(screen.getByText('All Base Conversions')).toBeInTheDocument();
+    expect(screen.getByText(/All Base Conversions/)).toBeInTheDocument();
   });
 
   it('has input field with default value', () => {
@@ -39,10 +39,10 @@ describe('NumberBaseConverter', () => {
 
   it('shows quick examples section', () => {
     render(<NumberBaseConverter name="Number Base Converter" description="Convert number bases" />);
-    
+
     expect(screen.getByText('Quick Examples')).toBeInTheDocument();
-    expect(screen.getByText('0 - Zero')).toBeInTheDocument();
-    expect(screen.getByText('1 - One')).toBeInTheDocument();
+    expect(screen.getByText('Programming Numbers')).toBeInTheDocument();
+    expect(screen.getByText('Basic Numbers')).toBeInTheDocument();
   });
 
   it('updates input value when typing', () => {

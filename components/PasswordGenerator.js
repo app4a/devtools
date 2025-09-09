@@ -32,6 +32,7 @@ export default function PasswordGenerator({ name, description }) {
   const [excludeSimilar, setExcludeSimilar] = useState(false);
   const [excludeAmbiguous, setExcludeAmbiguous] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [passwordHistory, setPasswordHistory] = useState([]);
 
   const generatePassword = useCallback(() => {
@@ -51,7 +52,7 @@ export default function PasswordGenerator({ name, description }) {
     }
 
     if (charset === '') {
-      alert('Please select at least one character type');
+      // Don't generate if no character types selected
       return;
     }
 
@@ -69,9 +70,12 @@ export default function PasswordGenerator({ name, description }) {
   const copyToClipboard = async (text = password) => {
     try {
       await navigator.clipboard.writeText(text);
+      setSnackbarMessage('Password copied to clipboard!');
       setOpenSnackbar(true);
     } catch (err) {
       console.error('Failed to copy password: ', err);
+      setSnackbarMessage('Failed to copy password');
+      setOpenSnackbar(true);
     }
   };
 
@@ -128,9 +132,7 @@ export default function PasswordGenerator({ name, description }) {
                   readOnly: true,
                   style: { 
                     fontFamily: 'monospace',
-                    fontSize: '1.1rem',
-                    backgroundColor: '#2d2d2d',
-                    color: '#ffffff'
+                    fontSize: '1.1rem'
                   },
                   endAdornment: (
                     <IconButton onClick={() => copyToClipboard()} edge="end">
@@ -148,6 +150,13 @@ export default function PasswordGenerator({ name, description }) {
             <Alert severity={strengthInfo.color} sx={{ mb: 2 }}>
               Password Strength: {strengthInfo.text} ({strengthInfo.score}/6)
             </Alert>
+
+            {/* Error message for no character types selected */}
+            {includeUppercase === false && includeLowercase === false && includeNumbers === false && includeSymbols === false && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                Please select at least one character type to generate a password.
+              </Alert>
+            )}
 
             <Button 
               variant="contained" 
@@ -320,7 +329,7 @@ export default function PasswordGenerator({ name, description }) {
         open={openSnackbar}
         autoHideDuration={2000}
         onClose={() => setOpenSnackbar(false)}
-        message="Password copied to clipboard!"
+        message={snackbarMessage}
       />
     </Box>
   );

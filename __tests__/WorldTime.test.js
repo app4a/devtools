@@ -6,8 +6,14 @@ describe('WorldTime', () => {
     render(<WorldTime name="World Time" description="View current times." />);
 
     expect(screen.getByText(/Local Time/i)).toBeInTheDocument();
-    expect(screen.getByText(/New York/i)).toBeInTheDocument();
-    expect(screen.getByText(/London/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/New York/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/London/i).length).toBeGreaterThan(0);
+    
+    // Check for new tabbed interface
+    expect(screen.getByText('World Clock')).toBeInTheDocument();
+    expect(screen.getByText('Meeting Planner')).toBeInTheDocument();
+    expect(screen.getByText('Time Converter')).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Business Hours/i })).toBeInTheDocument();
   });
 
   it('adds a new city', async () => {
