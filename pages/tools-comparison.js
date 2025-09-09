@@ -172,7 +172,7 @@ export default function ToolsComparison() {
         </Typography>
 
         <Grid container spacing={4} sx={{ mb: 6 }}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Typography variant="h5" gutterBottom color="primary">
@@ -189,7 +189,7 @@ export default function ToolsComparison() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Typography variant="h5" gutterBottom color="error">
@@ -255,7 +255,7 @@ export default function ToolsComparison() {
 
         <Grid container spacing={3}>
           {toolCategories.map((category, index) => (
-            <Grid item xs={12} md={6} key={index}>
+            <Grid size={{ xs: 12, md: 6 }} key={index}>
               <Card sx={{ height: '100%' }}>
                 <CardContent>
                   <Typography variant="h5" gutterBottom>
@@ -308,21 +308,21 @@ export default function ToolsComparison() {
             Try our developer tools and see why thousands of developers choose our platform for their daily workflow.
           </Typography>
           <Grid container spacing={2} justifyContent="center">
-            <Grid item>
+            <Grid>
               <Link href="/json" passHref>
                 <Button variant="contained" color="secondary" size="large">
                   Try JSON Formatter
                 </Button>
               </Link>
             </Grid>
-            <Grid item>
+            <Grid>
               <Link href="/base64" passHref>
                 <Button variant="contained" color="secondary" size="large">
                   Try Base64 Tool
                 </Button>
               </Link>
             </Grid>
-            <Grid item>
+            <Grid>
               <Link href="/jwt" passHref>
                 <Button variant="contained" color="secondary" size="large">
                   Try JWT Decoder
@@ -337,7 +337,7 @@ export default function ToolsComparison() {
         </Typography>
         
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" gutterBottom>
               Why are your tools completely free?
             </Typography>
@@ -345,7 +345,7 @@ export default function ToolsComparison() {
               We believe essential developer tools should be accessible to everyone. Our tools are funded by optional donations and don't require user data monetization.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" gutterBottom>
               How do you ensure privacy without servers?
             </Typography>
@@ -353,7 +353,7 @@ export default function ToolsComparison() {
               All processing happens locally in your browser using JavaScript. Your data never leaves your device, ensuring complete privacy and security.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" gutterBottom>
               What makes your tools faster than competitors?
             </Typography>
@@ -361,7 +361,7 @@ export default function ToolsComparison() {
               Client-side processing eliminates server round trips, optimized code reduces load times, and minimal UI ensures maximum performance.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" gutterBottom>
               Are there any usage limitations?
             </Typography>

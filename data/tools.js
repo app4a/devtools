@@ -8,6 +8,7 @@ export const toolCategories = [
       { name: 'Regex Tester', path: '/regex', description: 'Test regular expressions against sample text. Highlight matches and capture groups.' },
       { name: 'Base64 Encoder/Decoder', path: '/base64', description: 'Encode or decode text using Base64.' },
       { name: 'URL Encoder/Decoder', path: '/url', description: 'Encode or decode URL components, query parameters, and entire URLs to ensure proper formatting and prevent issues with special characters.' },
+      { name: 'HTML Entity Tool', path: '/html-entities', description: 'Encode and decode HTML entities for special characters and web security.' },
     ],
   },
   {
@@ -15,6 +16,7 @@ export const toolCategories = [
     tools: [
       { name: 'Hash Generator', path: '/hash', description: 'Generate hashes like MD5, SHA-1, SHA-256 for text' },
       { name: 'JWT Decoder', path: '/jwt', description: 'Decode JWT tokens and inspect their header, payload, and signature.' },
+      { name: 'Password Generator', path: '/password-generator', description: 'Generate strong, secure passwords with customizable options and strength analysis.' },
     ],
   },
   {
@@ -29,6 +31,19 @@ export const toolCategories = [
     name: 'Color Tools',
     tools: [
       { name: 'Color Converter', path: '/color', description: 'Convert between HEX, RGB, HSL & Include a color picker for convenience.' },
+    ],
+  },
+  {
+    name: 'Programming Tools',
+    tools: [
+      { name: 'Number Base Converter', path: '/number-base', description: 'Convert between binary, hexadecimal, decimal, and octal number systems.' },
+      { name: 'QR Code Generator', path: '/qr-code', description: 'Generate QR codes for URLs, WiFi, email, phone numbers, and more with customizable options.' },
+    ],
+  },
+  {
+    name: 'Web Development',
+    tools: [
+      { name: 'CSS Unit Converter', path: '/css-units', description: 'Convert between CSS units like px, rem, em, %, vw, vh for responsive design.' },
     ],
   },
   {

@@ -118,7 +118,7 @@ export default function BlogIndex() {
 
         <Grid container spacing={4}>
           {blogPosts.map((post, index) => (
-            <Grid item xs={12} md={6} lg={4} key={index}>
+            <Grid size={{ xs: 12, md: 6, lg: 4 }} key={index}>
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Box sx={{ mb: 2 }}>
@@ -158,19 +158,19 @@ export default function BlogIndex() {
             Why Choose Our Developer Tools?
           </Typography>
           <Grid container spacing={3} sx={{ mt: 2 }}>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Typography variant="h6" gutterBottom>🔒 Privacy First</Typography>
               <Typography variant="body2">All processing happens locally in your browser. Your data never leaves your device.</Typography>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Typography variant="h6" gutterBottom>⚡ Lightning Fast</Typography>
               <Typography variant="body2">Optimized for speed with instant results. No waiting, no delays, just productivity.</Typography>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Typography variant="h6" gutterBottom>🆓 Always Free</Typography>
               <Typography variant="body2">No registration required, no usage limits. Access all tools completely free forever.</Typography>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Typography variant="h6" gutterBottom>📱 Mobile Ready</Typography>
               <Typography variant="body2">Responsive design works perfectly on desktop, tablet, and mobile devices.</Typography>
             </Grid>

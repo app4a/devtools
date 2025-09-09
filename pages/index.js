@@ -113,7 +113,7 @@ function HomePage() {
       </Typography>
       
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom>🚀 Fast & Secure</Typography>
@@ -121,7 +121,7 @@ function HomePage() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom>💯 100% Free</Typography>
@@ -129,7 +129,7 @@ function HomePage() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom>⚡ No Installation</Typography>
@@ -178,7 +178,7 @@ function HomePage() {
       </Typography>
       
       <Grid container spacing={2} sx={{ mt: 2 }}>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom color="primary">
@@ -196,7 +196,7 @@ function HomePage() {
           </Card>
         </Grid>
         
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom color="primary">
@@ -214,7 +214,7 @@ function HomePage() {
           </Card>
         </Grid>
         
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom color="primary">

@@ -193,7 +193,7 @@ export default function FAQ() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             {faqData.map((category, categoryIndex) => (
               <Box key={categoryIndex} sx={{ mb: 4 }}>
                 <Typography variant="h4" component="h2" gutterBottom sx={{ mb: 3 }}>
@@ -229,7 +229,7 @@ export default function FAQ() {
             ))}
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Card sx={{ position: 'sticky', top: 20 }}>
               <CardContent>
                 <Typography variant="h5" gutterBottom>
