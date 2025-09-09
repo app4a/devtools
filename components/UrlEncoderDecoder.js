@@ -44,7 +44,7 @@ function UrlEncoderDecoder({ name, description }) {
       </Typography>
       <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
         <Grid container spacing={1}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <ToggleButtonGroup
               value={mode}
               exclusive

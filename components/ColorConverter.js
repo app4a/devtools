@@ -124,7 +124,7 @@ export default function ColorConverter({ name, description }) {
         {name}
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={7}>
+        <Grid size={{ xs: 12, md: 7 }}>
           <SketchPicker
             color={hexColor}
             onChangeComplete={handleColorPickerChange}
@@ -132,7 +132,7 @@ export default function ColorConverter({ name, description }) {
             width={'calc(100% - 16px)'}
           />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <Paper elevation={3} sx={{ p: 2 }}>
             <TextField
               label="HEX"

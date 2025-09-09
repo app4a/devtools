@@ -80,17 +80,30 @@ export default function WorldTime({ name, description }) {
 
       if (!localFound) {
         uniqueCities.unshift({ name: 'Local Time', timezone: localTimezone, isLocal: true });
+        seenTimezones.add(localTimezone);
       }
       setCities(uniqueCities);
     } else {
       const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      setCities([
+      const defaultCities = [
         { name: 'Local Time', timezone: localTimezone, isLocal: true },
         { name: 'New York', timezone: 'America/New_York' },
         { name: 'London', timezone: 'Europe/London' },
         { name: 'Tokyo', timezone: 'Asia/Tokyo' },
         { name: 'Sydney', timezone: 'Australia/Sydney' },
-      ]);
+      ];
+      
+      // Ensure no duplicate timezones in default cities
+      const seenTimezones = new Set();
+      const uniqueDefaultCities = defaultCities.filter(city => {
+        if (seenTimezones.has(city.timezone)) {
+          return false;
+        }
+        seenTimezones.add(city.timezone);
+        return true;
+      });
+      
+      setCities(uniqueDefaultCities);
     }
   }, []);
 
@@ -146,10 +159,9 @@ export default function WorldTime({ name, description }) {
             <DateTimePicker
               value={referenceTime}
               onChange={(newValue) => setReferenceTime(newValue)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  sx={{
+              slotProps={{
+                textField: {
+                  sx: {
                     backgroundColor: '#1e1e1e',
                     input: { color: '#ffffff' },
                     label: { color: '#ffffff' },
@@ -158,10 +170,10 @@ export default function WorldTime({ name, description }) {
                         borderColor: '#444',
                       },
                     },
-                  }}
-                  size="small"
-                />
-              )}
+                  },
+                  size: "small"
+                }
+              }}
             />
           </LocalizationProvider>
           <FormControlLabel
