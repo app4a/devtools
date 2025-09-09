@@ -8,23 +8,23 @@ export default function JwtPage() {
   const jwtSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "JWT Decoder & Validator",
-    "description": "Free online JWT token decoder and validator. Decode JSON Web Tokens, inspect header and payload, validate JWT structure instantly.",
+    "name": "Professional JWT Analyzer & Signature Verifier",
+    "description": "Advanced JWT token analyzer with signature verification, security analysis, and multi-algorithm support. Decode, validate, and verify JWT tokens with HMAC, RSA, and ECDSA algorithms.",
     "url": "https://yourdevtools.com/jwt",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": ["JWT token decoding", "Header inspection", "Payload viewing", "Token validation", "Security analysis"]
+    "featureList": ["JWT token decoding", "Signature verification", "Security analysis", "Time validation", "Multi-algorithm support", "HMAC verification", "RSA verification", "ECDSA verification", "Expiration tracking", "File operations", "Educational content"]
   };
 
   return (
     <>
       <SEO
-        title="JWT Decoder & Validator - Free Online JWT Token Decoder"
-        description="Free online JWT token decoder and validator. Decode JSON Web Tokens, inspect header and payload, validate JWT structure. Secure client-side processing, no token upload."
+        title="Professional JWT Analyzer & Signature Verifier - JWT Decoder"
+        description="Advanced JWT token analyzer with signature verification, security analysis, and multi-algorithm support. Decode, validate, and verify JWT tokens with HMAC, RSA, ECDSA algorithms. Professional-grade JWT security analysis."
         canonical="/jwt"
         schema={jwtSchema}
-        keywords={['jwt decoder', 'jwt validator', 'json web token decoder', 'jwt token decoder', 'jwt parser', 'decode jwt online']}
+        keywords={['jwt decoder signature verification', 'jwt analyzer security analysis', 'jwt signature verifier hmac rsa ecdsa', 'jwt token validator professional', 'jwt parser multi algorithm', 'decode jwt verify signature', 'jwt security analysis tool', 'json web token verifier']}
       />
       <JwtDecoder name={tool?.name || 'JWT Decoder'} description={tool?.description || 'Decode JWT tokens'} />
     </>

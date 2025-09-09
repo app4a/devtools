@@ -8,23 +8,23 @@ export default function QrCodePage() {
   const qrSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "QR Code Generator - Free Online",
-    "description": "Free online QR code generator. Create QR codes for URLs, WiFi, email, phone, SMS, and more. Customizable colors and sizes with instant download.",
+    "name": "Professional QR Code Generator - Batch & Custom Templates",
+    "description": "Advanced QR code generator with single/batch generation, multiple formats (PNG/SVG/PDF), customization options, and template browser. Professional-grade QR code suite.",
     "url": "https://yourdevtools.com/qr-code",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": ["QR code generation", "Multiple data types", "Custom colors", "Downloadable images", "WiFi QR codes", "URL QR codes"]
+    "featureList": ["Batch QR generation", "Multiple formats (PNG/SVG/PDF)", "Template browser", "Custom styling", "Logo embedding", "Error correction levels", "Size optimization", "WiFi QR codes", "vCard QR codes", "Bulk download"]
   };
 
   return (
     <>
       <SEO
-        title="QR Code Generator - Free Online QR Code Maker"
-        description="Free online QR code generator. Create QR codes for URLs, WiFi networks, email, phone numbers, and more. Customize colors, size, and download instantly. No registration required."
+        title="Professional QR Code Generator - Batch, Templates & Multiple Formats"
+        description="Advanced QR code generator with batch processing, multiple formats (PNG/SVG/PDF), custom templates, logo embedding, and bulk download. Professional-grade QR code suite for businesses."
         canonical="/qr-code"
         schema={qrSchema}
-        keywords={['qr code generator', 'qr code maker', 'qr code creator', 'wifi qr code', 'url qr code', 'free qr code']}
+        keywords={['qr code generator batch', 'qr code templates professional', 'qr code svg png pdf', 'bulk qr code generator', 'custom qr codes logo', 'professional qr suite', 'business qr generator', 'vcard qr generator']}
       />
       <QrCodeGenerator name={tool?.name || 'QR Code Generator'} description={tool?.description || 'Generate QR codes for any content'} />
     </>

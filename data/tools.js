@@ -2,56 +2,56 @@ export const toolCategories = [
   {
     name: 'Text Tools',
     tools: [
-      { name: 'JSON Formatter', path: '/json', description: 'Format and validate JSON data for better readability.' },
-      { name: 'Diff Tool', path: '/diff', description: 'Compare two text inputs and highlight the differences.' },
-      { name: 'Multiline Formatter', path: '/multiline', description: 'Format multiline strings, useful for SQL queries or code snippets.' },
-      { name: 'Regex Tester', path: '/regex', description: 'Test regular expressions against sample text. Highlight matches and capture groups.' },
-      { name: 'Base64 Encoder/Decoder', path: '/base64', description: 'Encode or decode text using Base64.' },
-      { name: 'URL Encoder/Decoder', path: '/url', description: 'Encode or decode URL components, query parameters, and entire URLs to ensure proper formatting and prevent issues with special characters.' },
-      { name: 'HTML Entity Tool', path: '/html-entities', description: 'Encode and decode HTML entities for special characters and web security.' },
+      { name: 'JSON Formatter', path: '/json', description: 'Professional JSON formatter with validation, minification, statistics, and error detection. Format, validate, and analyze JSON data instantly.' },
+      { name: 'Diff Tool', path: '/diff', description: 'Advanced text comparison tool with side-by-side and unified views, statistics, file upload, and export options.' },
+      { name: 'Multiline Formatter', path: '/multiline', description: 'Professional text processing suite with custom formatting, presets for SQL/JSON/CSV, text analysis, and template management.' },
+      { name: 'Regex Tester', path: '/regex', description: 'Comprehensive regex testing suite with flags, live highlighting, capture groups, pattern library, and cheat sheet.' },
+      { name: 'Base64 Encoder/Decoder', path: '/base64', description: 'Advanced Base64 encoder/decoder with Unicode support, file upload/download, swap functionality, and educational content.' },
+      { name: 'URL Encoder/Decoder', path: '/url', description: 'Professional URL encoding tool supporting multiple types (URI Component, Full URI, HTML, Base64), URL analysis, and file operations.' },
+      { name: 'HTML Entity Tool', path: '/html-entities', description: 'Comprehensive HTML entity encoder/decoder with 200+ entities, category filtering, security analysis, and bulk processing.' },
     ],
   },
   {
     name: 'Security Tools',
     tools: [
-      { name: 'Hash Generator', path: '/hash', description: 'Generate hashes like MD5, SHA-1, SHA-256 for text' },
-      { name: 'JWT Decoder', path: '/jwt', description: 'Decode JWT tokens and inspect their header, payload, and signature.' },
-      { name: 'Password Generator', path: '/password-generator', description: 'Generate strong, secure passwords with customizable options and strength analysis.' },
+      { name: 'Hash Generator', path: '/hash', description: 'Professional hash generator supporting 10+ algorithms (MD5, SHA-1/256/512, SHA-3, RIPEMD-160), HMAC, file upload, and security indicators.' },
+      { name: 'JWT Decoder', path: '/jwt', description: 'Advanced JWT analyzer with signature verification, security analysis, time validation, and multi-algorithm support (HMAC, RSA, ECDSA).' },
+      { name: 'Password Generator', path: '/password-generator', description: 'Secure password generator with advanced options, strength analysis, history tracking, and comprehensive security tips.' },
     ],
   },
   {
     name: 'Date & Time Tools',
     tools: [
-      { name: 'World Time', path: '/worldtime', description: 'View current times in various cities around the world.' },
-      { name: 'Timestamp Converter', path: '/timestamp', description: 'Convert Unix timestamps to human-readable dates and vice-versa, supporting various time zones.' },
-      { name: 'Cron Expression Parser', path: '/cron', description: 'Parse cron expressions and get human-readable descriptions and upcoming dates.' },
+      { name: 'World Time', path: '/worldtime', description: 'Professional timezone tool with world clock, meeting planner, time converter, business hours analysis, and 40+ major cities.' },
+      { name: 'Timestamp Converter', path: '/timestamp', description: 'Advanced timestamp converter with live updates, multiple timezones, format options, presets, and detailed time information.' },
+      { name: 'Cron Expression Parser', path: '/cron', description: 'Professional cron tool with visual builder, timezone support, schedule preview, and comprehensive syntax guide.' },
     ],
   },
   {
     name: 'Color Tools',
     tools: [
-      { name: 'Color Converter', path: '/color', description: 'Convert between HEX, RGB, HSL & Include a color picker for convenience.' },
+      { name: 'Color Converter', path: '/color', description: 'Professional color tool supporting HEX/RGB/HSL/HSV, accessibility checker (WCAG), color harmony generator, and palette management.' },
     ],
   },
   {
     name: 'Programming Tools',
     tools: [
-      { name: 'Number Base Converter', path: '/number-base', description: 'Convert between binary, hexadecimal, decimal, and octal number systems.' },
-      { name: 'QR Code Generator', path: '/qr-code', description: 'Generate QR codes for URLs, WiFi, email, phone numbers, and more with customizable options.' },
+      { name: 'Number Base Converter', path: '/number-base', description: 'Advanced number system converter supporting 15+ bases, bit analysis, arithmetic operations, and educational content.' },
+      { name: 'QR Code Generator', path: '/qr-code', description: 'Professional QR code generator with single/batch generation, multiple formats (PNG/SVG/PDF), customization, and template browser.' },
     ],
   },
   {
     name: 'Web Development',
     tools: [
-      { name: 'CSS Unit Converter', path: '/css-units', description: 'Convert between CSS units like px, rem, em, %, vw, vh for responsive design.' },
+      { name: 'CSS Unit Converter', path: '/css-units', description: 'Comprehensive CSS unit converter with 20+ units, visual preview, responsive analysis, CSS generation, and device presets.' },
     ],
   },
   {
     name: 'Resources',
     tools: [
-      { name: 'Developer Blog', path: '/blog', description: 'Guides, tutorials, and best practices for web development.' },
-      { name: 'FAQ & Help', path: '/faq', description: 'Frequently asked questions and help for using our tools.' },
-      { name: 'Tools Comparison', path: '/tools-comparison', description: 'Compare our free tools with popular alternatives.' },
+      { name: 'Developer Blog', path: '/blog', description: 'Comprehensive guides, tutorials, and best practices for developer tools and web development.' },
+      { name: 'FAQ & Help', path: '/faq', description: 'Frequently asked questions, troubleshooting guides, and detailed help for using our professional tools.' },
+      { name: 'Tools Comparison', path: '/tools-comparison', description: 'Detailed comparison of our enhanced developer tools with popular online alternatives and their features.' },
     ],
   },
 ];

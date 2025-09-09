@@ -8,23 +8,23 @@ export default function ColorPage() {
   const colorSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Color Converter - HEX, RGB, HSL",
-    "description": "Free online color converter between HEX, RGB, HSL formats. Interactive color picker with instant conversion and copy functionality.",
+    "name": "Professional Color Tool - Converter & Accessibility Checker",
+    "description": "Advanced color tool supporting HEX, RGB, HSL, HSV, RGBA, HSLA conversion with WCAG accessibility checker, color harmony generator, and palette management.",
     "url": "https://yourdevtools.com/color",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": ["HEX to RGB conversion", "RGB to HSL conversion", "Color picker", "Instant color preview", "Copy color values"]
+    "featureList": ["Multi-format conversion", "WCAG accessibility checker", "Color harmony generator", "Palette management", "Complementary colors", "Triadic colors", "Analogous colors", "Monochromatic colors", "Contrast ratio calculator", "Save/export palettes"]
   };
 
   return (
     <>
       <SEO
-        title="Color Converter - HEX, RGB, HSL Converter & Color Picker"
-        description="Free online color converter between HEX, RGB, HSL formats. Interactive color picker with instant conversion. Perfect for web developers and designers."
+        title="Professional Color Tool - Converter, Accessibility & Harmony Generator"
+        description="Advanced color tool supporting HEX/RGB/HSL/HSV conversion with WCAG accessibility checker, color harmony generator (complementary, triadic, analogous), and palette management. Professional-grade color suite."
         canonical="/color"
         schema={colorSchema}
-        keywords={['color converter', 'hex to rgb', 'rgb to hsl', 'color picker', 'hex color converter', 'rgb converter', 'hsl converter']}
+        keywords={['color converter wcag accessibility', 'color harmony generator', 'color palette manager', 'hex rgb hsl hsv converter', 'contrast ratio calculator', 'complementary colors generator', 'triadic colors tool', 'professional color suite']}
       />
       <ColorConverter name={tool?.name || 'Color Converter'} description={tool?.description || 'Convert colors between formats'} />
     </>

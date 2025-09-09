@@ -8,23 +8,23 @@ export default function HashPage() {
   const hashSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Hash Generator - MD5, SHA-1, SHA-256",
-    "description": "Free online hash generator supporting MD5, SHA-1, SHA-256, SHA-512. Generate secure cryptographic hashes for passwords, files, and text instantly.",
+    "name": "Professional Hash Generator - 10+ Algorithms with HMAC",
+    "description": "Advanced hash generator supporting 10+ algorithms including MD5, SHA-1/256/512, SHA-3, RIPEMD-160, and HMAC variants. Professional-grade cryptographic tool with file upload and security indicators.",
     "url": "https://yourdevtools.com/hash",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": ["MD5 hash generation", "SHA-1 hashing", "SHA-256 hashing", "SHA-512 hashing", "Secure client-side processing"]
+    "featureList": ["10+ hash algorithms", "HMAC support", "SHA-3 family", "RIPEMD-160", "File upload", "Batch processing", "Security indicators", "Algorithm comparison", "Copy all hashes", "Educational content"]
   };
 
   return (
     <>
       <SEO
-        title="Hash Generator - MD5, SHA-1, SHA-256, SHA-512 Online"
-        description="Free online hash generator for MD5, SHA-1, SHA-256, SHA-512. Generate secure cryptographic hashes for passwords, files, and text. Fast, secure, client-side processing."
+        title="Professional Hash Generator - 10+ Algorithms with HMAC & SHA-3"
+        description="Advanced hash generator supporting 10+ algorithms: MD5, SHA-1/256/512, SHA-3, RIPEMD-160, and HMAC variants. Professional cryptographic tool with file upload, batch processing, and security indicators."
         canonical="/hash"
         schema={hashSchema}
-        keywords={['hash generator', 'md5 generator', 'sha256 generator', 'sha1 hash', 'sha512 hash', 'cryptographic hash', 'password hash']}
+        keywords={['hash generator 10 algorithms', 'hmac generator online', 'sha3 hash generator', 'ripemd160 generator', 'professional hash tool', 'cryptographic hash suite', 'batch hash generator', 'hash algorithm comparison']}
       />
       <HashGenerator name={tool?.name || 'Hash Generator'} description={tool?.description || 'Generate hashes'} />
     </>

@@ -70,13 +70,23 @@ function HomePage() {
     "logo": "https://yourdevtools.com/logo512.png",
     "description": "Providing free online developer tools and utilities for programmers worldwide",
     "knowsAbout": [
-      "JSON formatting",
-      "Base64 encoding",
-      "Hash generation",
-      "JWT decoding",
-      "Color conversion",
-      "Regular expressions",
-      "Text processing"
+      "Professional JSON formatting and validation",
+      "Advanced Base64 encoding with Unicode support",
+      "Cryptographic hash generation (MD5, SHA-1/256/512, SHA-3, HMAC)",
+      "JWT token analysis and signature verification",
+      "Color conversion with accessibility compliance",
+      "Regular expression testing with pattern libraries",
+      "HTML entity encoding and security analysis",
+      "URL encoding and analysis",
+      "Password generation and strength analysis",
+      "Cron expression parsing and scheduling",
+      "World time and timezone conversion",
+      "QR code generation and customization",
+      "CSS unit conversion and responsive design",
+      "Text comparison and differential analysis",
+      "Number base conversion and arithmetic",
+      "Multiline text formatting and templates",
+      "Timestamp conversion and date formatting"
     ]
   };
 
@@ -85,30 +95,39 @@ function HomePage() {
   return (
     <Box sx={{ p: 2 }}>
       <SEO 
-        title="Free Online Developer Tools & Utilities"
-        description="Comprehensive suite of free online developer tools including JSON formatter, Base64 encoder/decoder, hash generator, JWT decoder, color converter, regex tester and more. No registration required."
+        title="Free Professional Developer Tools & Utilities Suite"
+        description="Complete suite of professional-grade developer tools: JSON formatter with validation, advanced hash generator with 10+ algorithms, JWT analyzer with signature verification, color tools with accessibility checker, regex tester with pattern library, and enhanced tools. No registration required."
         canonical="/"
         schema={combinedSchema}
         keywords={[
-          'json formatter online',
-          'base64 encoder decoder',
-          'hash generator md5 sha256',
-          'jwt token decoder',
-          'color converter hex rgb',
-          'regex tester online',
-          'developer utilities',
-          'web development tools'
+          'professional json formatter validator',
+          'jwt decoder signature verification',
+          'hash generator md5 sha256 sha512 hmac',
+          'color converter accessibility wcag',
+          'regex tester pattern library',
+          'base64 encoder unicode support',
+          'password generator strength analysis',
+          'cron parser visual builder',
+          'world time timezone converter',
+          'developer tools professional grade',
+          'qr code generator batch',
+          'css unit converter responsive',
+          'html entity encoder decoder',
+          'url encoder analyzer',
+          'diff tool comparison',
+          'multiline formatter presets'
         ]}
       />
       <Typography variant="h4" component="h1" gutterBottom>
-        Free Online Developer Tools & Utilities
+        Professional Developer Tools & Utilities Suite
       </Typography>
       <Typography variant="h6" component="h2" sx={{ mb: 2, fontWeight: 'normal' }}>
-        Powerful, fast, and completely free tools for developers and programmers
+        Professional-grade tools for developers - completely free
       </Typography>
       <Typography variant="body1" paragraph sx={{ mb: 4 }}>
-        Access our comprehensive suite of developer tools without any registration. Format JSON, encode/decode Base64, 
-        generate secure hashes, decode JWT tokens, convert colors, test regular expressions, and much more. 
+        Access our comprehensive suite of enhanced developer tools without any registration. Features include: 
+        JSON formatter with validation & statistics, advanced hash generator with 10+ algorithms, JWT analyzer with signature verification, 
+        color tools with accessibility checker, regex tester with pattern library, and much more. 
         All tools work entirely in your browser for maximum privacy and speed.
       </Typography>
       

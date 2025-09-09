@@ -8,23 +8,23 @@ export default function HtmlEntitiesPage() {
   const htmlEntitySchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "HTML Entity Encoder/Decoder",
-    "description": "Free online HTML entity encoder and decoder. Convert special characters to HTML entities and vice versa. Prevent XSS and display special characters correctly.",
+    "name": "Professional HTML Entity Suite",
+    "description": "Comprehensive HTML entity encoder/decoder with 200+ entities, category filtering, security analysis, and bulk processing. Advanced tool for web developers and security professionals.",
     "url": "https://yourdevtools.com/html-entities",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": ["HTML entity encoding", "HTML entity decoding", "Special character conversion", "XSS prevention", "International character support"]
+    "featureList": ["200+ HTML entities", "Category filtering", "Security analysis", "Bulk processing", "Entity reference", "XSS prevention", "File operations", "Usage guide", "Smart encoding modes", "Search and filter"]
   };
 
   return (
     <>
       <SEO
-        title="HTML Entity Encoder/Decoder - Convert Special Characters"
-        description="Free online HTML entity encoder and decoder. Convert special characters like <, >, &, quotes to HTML entities and back. Essential for web security and international character support."
+        title="Professional HTML Entity Suite - 200+ Entities with Security Analysis"
+        description="Comprehensive HTML entity encoder/decoder with 200+ entities, category filtering, security analysis, and bulk processing. Advanced tool for web developers with entity reference and usage guide."
         canonical="/html-entities"
         schema={htmlEntitySchema}
-        keywords={['html entity encoder', 'html entity decoder', 'html entities', 'special characters', 'html escape', 'xss prevention']}
+        keywords={['html entity encoder decoder 200', 'html entities category filter', 'html entity security analysis', 'bulk html entity processing', 'html entity reference guide', 'professional html encoder', 'xss prevention entities', 'html escape comprehensive']}
       />
       <HtmlEntityTool name={tool?.name || 'HTML Entity Encoder/Decoder'} description={tool?.description || 'Encode and decode HTML entities'} />
     </>
