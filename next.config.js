@@ -1,8 +1,27 @@
 /** @type {import('next').NextConfig} */
+
+// Determine if we're building for GitHub Pages
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'developer-tools';
+
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['react-syntax-highlighter'],
   output: 'export',
+  
+  // GitHub Pages configuration
+  ...(isGithubPages && {
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}/`,
+  }),
+  
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
+  
+  // Trailing slash for better GitHub Pages compatibility
+  trailingSlash: true,
   
   // Performance optimizations
   compress: true,

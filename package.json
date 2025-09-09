@@ -60,7 +60,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "next build",
     "lint": "next lint",
     "test": "jest",
     "test:clearCache": "jest --clearCache",
@@ -68,7 +68,10 @@
     "seo:validate": "echo 'Validating SEO implementation...' && node scripts/validate-seo.js",
     "seo:sitemap": "echo 'Generating sitemap...' && node scripts/generate-sitemap.js",
     "lighthouse": "lighthouse --output=html --output-path=./lighthouse-report.html --chrome-flags='--headless' http://localhost:3000",
-    "build:production": "NODE_ENV=production npm run build && npm run export"
+    "build:production": "NODE_ENV=production npm run build",
+    "deploy:github": "npm run build && touch out/.nojekyll",
+    "preview": "npm run build && npx serve out",
+    "test:github-build": "node scripts/test-github-build.js"
   },
   "browserslist": {
     "production": [
