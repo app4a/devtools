@@ -14,7 +14,7 @@
     "web-development",
     "programming-tools"
   ],
-  "homepage": "https://yourdevtools.com",
+  "homepage": "https://app4a.github.io/devtools",
   "repository": {
     "type": "git",
     "url": "https://github.com/yourusername/developer-tools.git"
@@ -24,8 +24,8 @@
   },
   "author": {
     "name": "Developer Tools Team",
-    "email": "contact@yourdevtools.com",
-    "url": "https://yourdevtools.com"
+    "email": "project.nomeaning@gmail.com",
+    "url": "https://app4a.github.io/devtools"
   },
   "license": "MIT",
   "private": false,

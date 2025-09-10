@@ -27,12 +27,12 @@ function HomePage() {
     "@type": "WebSite",
     "name": "Developer Tools",
     "description": "Free online developer tools and utilities for programmers and web developers",
-    "url": "https://yourdevtools.com",
+    "url": "https://app4a.github.io/devtools",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://yourdevtools.com/?q={search_term_string}"
+        "urlTemplate": "https://app4a.github.io/devtools/?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
@@ -57,7 +57,7 @@ function HomePage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://yourdevtools.com"
+        "item": "https://app4a.github.io/devtools"
       }
     ]
   };
@@ -66,8 +66,8 @@ function HomePage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Developer Tools",
-    "url": "https://yourdevtools.com",
-    "logo": "https://yourdevtools.com/logo512.png",
+    "url": "https://app4a.github.io/devtools",
+    "logo": "https://app4a.github.io/devtools/logo512.png",
     "description": "Providing free online developer tools and utilities for programmers worldwide",
     "knowsAbout": [
       "Professional JSON formatting and validation",

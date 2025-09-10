@@ -10,7 +10,7 @@ export default function NumberBasePage() {
     "@type": "SoftwareApplication",
     "name": "Number Base Converter - Binary, Hex, Decimal, Octal",
     "description": "Free online number base converter. Convert between binary, hexadecimal, decimal, and octal number systems. Essential tool for programmers and computer science students.",
-    "url": "https://yourdevtools.com/number-base",
+    "url": "https://app4a.github.io/devtools/number-base",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

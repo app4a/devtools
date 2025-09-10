@@ -26,7 +26,7 @@ export default function JwtSecurityBestPractices() {
     "@type": "Article",
     "headline": "JWT Tokens: Security Best Practices and Common Vulnerabilities",
     "description": "Comprehensive guide to JWT token security. Learn about common vulnerabilities, best practices, and how to implement secure JWT authentication.",
-    "image": "https://yourdevtools.com/logo512.png",
+    "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
       "@type": "Organization",
       "name": "Developer Tools Team"
@@ -36,14 +36,14 @@ export default function JwtSecurityBestPractices() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": "2024-01-01",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://yourdevtools.com/blog/jwt-security-best-practices"
+      "@id": "https://app4a.github.io/devtools/blog/jwt-security-best-practices"
     }
   };
 

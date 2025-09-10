@@ -137,7 +137,7 @@ export default function ToolsComparison() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",

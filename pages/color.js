@@ -10,7 +10,7 @@ export default function ColorPage() {
     "@type": "SoftwareApplication",
     "name": "Professional Color Tool - Converter & Accessibility Checker",
     "description": "Advanced color tool supporting HEX, RGB, HSL, HSV, RGBA, HSLA conversion with WCAG accessibility checker, color harmony generator, and palette management.",
-    "url": "https://yourdevtools.com/color",
+    "url": "https://app4a.github.io/devtools/color",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

@@ -10,7 +10,7 @@ export default function UrlPage() {
     "@type": "SoftwareApplication",
     "name": "URL Encoder & Decoder",
     "description": "Free online URL encoder and decoder. Encode or decode URLs, query parameters, and URL components. Handle special characters in URLs safely.",
-    "url": "https://yourdevtools.com/url",
+    "url": "https://app4a.github.io/devtools/url",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

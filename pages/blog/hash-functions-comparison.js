@@ -26,7 +26,7 @@ export default function HashFunctionsComparison() {
     "@type": "Article",
     "headline": "Hash Functions in Web Development: MD5, SHA-1, SHA-256 Comparison",
     "description": "Complete comparison of hash functions for web developers. Learn when to use MD5, SHA-1, SHA-256, and SHA-512, plus security considerations.",
-    "image": "https://yourdevtools.com/logo512.png",
+    "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
       "@type": "Organization",
       "name": "Developer Tools Team"
@@ -36,14 +36,14 @@ export default function HashFunctionsComparison() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": "2024-01-01",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://yourdevtools.com/blog/hash-functions-comparison"
+      "@id": "https://app4a.github.io/devtools/blog/hash-functions-comparison"
     }
   };
 

@@ -26,7 +26,7 @@ export default function Base64EncodingExplained() {
     "@type": "Article",
     "headline": "Base64 Encoding Explained: When and How to Use It",
     "description": "Understanding Base64 encoding and decoding. Learn when to use Base64, security considerations, and practical examples for web developers.",
-    "image": "https://yourdevtools.com/logo512.png",
+    "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
       "@type": "Organization",
       "name": "Developer Tools Team"
@@ -36,14 +36,14 @@ export default function Base64EncodingExplained() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": "2024-01-01",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://yourdevtools.com/blog/base64-encoding-explained"
+      "@id": "https://app4a.github.io/devtools/blog/base64-encoding-explained"
     }
   };
 

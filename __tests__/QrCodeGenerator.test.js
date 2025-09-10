@@ -25,7 +25,7 @@ describe('QrCodeGenerator', () => {
     
     const textInput = screen.getByRole('textbox');
     expect(textInput).toBeInTheDocument();
-    expect(textInput.value).toBe('https://yourdevtools.com');
+    expect(textInput.value).toBe('https://app4a.github.io/devtools');
   });
 
   it('shows customization options', () => {

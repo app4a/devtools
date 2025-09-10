@@ -26,7 +26,7 @@ export default function RegexMasteryGuide() {
     "@type": "Article",
     "headline": "Regular Expressions Mastery: From Beginner to Expert",
     "description": "Master regular expressions with practical examples. Learn regex patterns, performance optimization, and advanced techniques for text processing.",
-    "image": "https://yourdevtools.com/logo512.png",
+    "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
       "@type": "Organization",
       "name": "Developer Tools Team"
@@ -36,14 +36,14 @@ export default function RegexMasteryGuide() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": "2024-01-01",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://yourdevtools.com/blog/regex-mastery-guide"
+      "@id": "https://app4a.github.io/devtools/blog/regex-mastery-guide"
     }
   };
 

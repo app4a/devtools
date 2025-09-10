@@ -10,7 +10,7 @@ export default function RegexPage() {
     "@type": "SoftwareApplication",
     "name": "Regex Tester & Validator",
     "description": "Free online regular expression tester and validator. Test regex patterns, find matches, capture groups with live highlighting and detailed explanations.",
-    "url": "https://yourdevtools.com/regex",
+    "url": "https://app4a.github.io/devtools/regex",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

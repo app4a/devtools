@@ -10,7 +10,7 @@ export default function Base64Page() {
     "@type": "SoftwareApplication",
     "name": "Base64 Encoder & Decoder",
     "description": "Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 strings instantly with our secure browser-based tool.",
-    "url": "https://yourdevtools.com/base64",
+    "url": "https://app4a.github.io/devtools/base64",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

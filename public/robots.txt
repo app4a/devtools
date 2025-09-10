@@ -15,4 +15,4 @@ Allow: /favicon.ico
 Allow: /sitemap.xml
 
 # Sitemap location
-Sitemap: https://yourdevtools.com/sitemap.xml
+Sitemap: https://app4a.github.io/devtools/sitemap.xml

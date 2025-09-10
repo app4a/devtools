@@ -10,7 +10,7 @@ export default function PasswordGeneratorPage() {
     "@type": "SoftwareApplication",
     "name": "Password Generator - Strong & Secure",
     "description": "Free online password generator. Create strong, secure passwords with customizable length, character types, and security options. No data stored.",
-    "url": "https://yourdevtools.com/password-generator",
+    "url": "https://app4a.github.io/devtools/password-generator",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

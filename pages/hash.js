@@ -10,7 +10,7 @@ export default function HashPage() {
     "@type": "SoftwareApplication",
     "name": "Professional Hash Generator - 10+ Algorithms with HMAC",
     "description": "Advanced hash generator supporting 10+ algorithms including MD5, SHA-1/256/512, SHA-3, RIPEMD-160, and HMAC variants. Professional-grade cryptographic tool with file upload and security indicators.",
-    "url": "https://yourdevtools.com/hash",
+    "url": "https://app4a.github.io/devtools/hash",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

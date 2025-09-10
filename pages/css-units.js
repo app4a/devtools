@@ -10,7 +10,7 @@ export default function CssUnitsPage() {
     "@type": "SoftwareApplication",
     "name": "CSS Unit Converter - px, rem, em, %",
     "description": "Free online CSS unit converter. Convert between pixels, rem, em, percentages, viewport units and more. Perfect for responsive web design.",
-    "url": "https://yourdevtools.com/css-units",
+    "url": "https://app4a.github.io/devtools/css-units",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

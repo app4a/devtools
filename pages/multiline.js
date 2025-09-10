@@ -10,7 +10,7 @@ export default function MultilinePage() {
     "@type": "SoftwareApplication",
     "name": "Multiline String Formatter",
     "description": "Free online multiline string formatter. Convert multiline text to formatted arrays, SQL queries, or code snippets with custom wrapping and ending characters.",
-    "url": "https://yourdevtools.com/multiline",
+    "url": "https://app4a.github.io/devtools/multiline",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

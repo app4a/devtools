@@ -20,7 +20,7 @@ export default function JsonFormattingGuide() {
     "@type": "Article",
     "headline": "Complete Guide to JSON Formatting and Validation in 2024",
     "description": "Master JSON formatting with our comprehensive guide. Learn best practices, common errors, and advanced validation techniques for modern web development.",
-    "image": "https://yourdevtools.com/logo512.png",
+    "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
       "@type": "Organization",
       "name": "Developer Tools Team"
@@ -30,14 +30,14 @@ export default function JsonFormattingGuide() {
       "name": "Developer Tools",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdevtools.com/logo512.png"
+        "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": "2024-01-01",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://yourdevtools.com/blog/json-formatting-guide-2024"
+      "@id": "https://app4a.github.io/devtools/blog/json-formatting-guide-2024"
     }
   };
 

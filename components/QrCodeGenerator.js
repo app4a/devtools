@@ -49,7 +49,7 @@ import Head from 'next/head';
 import QRCode from 'qrcode';
 
 export default function QrCodeGenerator({ name, description }) {
-  const [text, setText] = useState('https://yourdevtools.com');
+  const [text, setText] = useState('https://app4a.github.io/devtools');
   const [size, setSize] = useState(200);
   const [errorLevel, setErrorLevel] = useState('M');
   const [foregroundColor, setForegroundColor] = useState('#000000');
@@ -219,7 +219,7 @@ export default function QrCodeGenerator({ name, description }) {
     { 
       category: 'Web & Social',
       items: [
-        { label: 'Website URL', value: 'https://yourdevtools.com' },
+        { label: 'Website URL', value: 'https://app4a.github.io/devtools' },
         { label: 'YouTube Video', value: 'https://youtube.com/watch?v=dQw4w9WgXcQ' },
         { label: 'Social Profile', value: 'https://twitter.com/username' },
         { label: 'App Store Link', value: 'https://apps.apple.com/app/appname/id123456789' }

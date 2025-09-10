@@ -12,7 +12,7 @@ export default function WorldTimePage() {
     "@type": "SoftwareApplication",
     "name": "World Time Clock & Timezone Converter",
     "description": "Free online world time clock showing current times in multiple cities. Add custom cities, compare timezones, and track time across the globe.",
-    "url": "https://yourdevtools.com/worldtime",
+    "url": "https://app4a.github.io/devtools/worldtime",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

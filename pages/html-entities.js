@@ -10,7 +10,7 @@ export default function HtmlEntitiesPage() {
     "@type": "SoftwareApplication",
     "name": "Professional HTML Entity Suite",
     "description": "Comprehensive HTML entity encoder/decoder with 200+ entities, category filtering, security analysis, and bulk processing. Advanced tool for web developers and security professionals.",
-    "url": "https://yourdevtools.com/html-entities",
+    "url": "https://app4a.github.io/devtools/html-entities",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

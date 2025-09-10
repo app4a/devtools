@@ -70,17 +70,17 @@ export default function BlogIndex() {
     "@type": "Blog",
     "name": "Developer Tools Blog",
     "description": "Expert guides, tutorials, and best practices for web developers. Learn about JSON, Base64, JWT, regex, and other essential development tools.",
-    "url": "https://yourdevtools.com/blog",
+    "url": "https://app4a.github.io/devtools/blog",
     "publisher": {
       "@type": "Organization",
       "name": "Developer Tools",
-      "url": "https://yourdevtools.com"
+      "url": "https://app4a.github.io/devtools"
     },
     "blogPost": blogPosts.map(post => ({
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.excerpt,
-      "url": `https://yourdevtools.com/blog/${post.slug}`,
+      "url": `https://app4a.github.io/devtools/blog/${post.slug}`,
       "datePublished": "2024-01-01",
       "author": {
         "@type": "Organization",

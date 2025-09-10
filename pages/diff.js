@@ -10,7 +10,7 @@ export default function DiffPage() {
     "@type": "SoftwareApplication",
     "name": "Text Diff Tool - Compare Text Differences",
     "description": "Free online text comparison tool. Compare two text inputs side-by-side and highlight differences with color-coded changes, additions, and deletions.",
-    "url": "https://yourdevtools.com/diff",
+    "url": "https://app4a.github.io/devtools/diff",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

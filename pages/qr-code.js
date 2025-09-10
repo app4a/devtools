@@ -10,7 +10,7 @@ export default function QrCodePage() {
     "@type": "SoftwareApplication",
     "name": "Professional QR Code Generator - Batch & Custom Templates",
     "description": "Advanced QR code generator with single/batch generation, multiple formats (PNG/SVG/PDF), customization options, and template browser. Professional-grade QR code suite.",
-    "url": "https://yourdevtools.com/qr-code",
+    "url": "https://app4a.github.io/devtools/qr-code",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

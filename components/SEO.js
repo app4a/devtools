@@ -12,7 +12,7 @@ export default function SEO({
   keywords = [],
 }) {
   const siteName = 'Developer Tools';
-  const siteUrl = 'https://yourdevtools.com'; // Replace with your actual domain
+  const siteUrl = 'https://app4a.github.io/devtools'; 
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} - Free Online Developer Utilities`;
   const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}`;
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;

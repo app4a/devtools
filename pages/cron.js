@@ -10,7 +10,7 @@ export default function CronPage() {
     "@type": "SoftwareApplication",
     "name": "Cron Expression Parser & Validator",
     "description": "Free online cron expression parser and validator. Parse cron jobs, get human-readable descriptions, and view upcoming execution dates.",
-    "url": "https://yourdevtools.com/cron",
+    "url": "https://app4a.github.io/devtools/cron",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

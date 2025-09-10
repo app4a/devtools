@@ -10,7 +10,7 @@ export default function JsonPage() {
     "@type": "SoftwareApplication",
     "name": "JSON Formatter & Validator",
     "description": "Free online JSON formatter and validator tool. Format, validate, and beautify JSON data instantly.",
-    "url": "https://yourdevtools.com/json",
+    "url": "https://app4a.github.io/devtools/json",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": {
@@ -39,13 +39,13 @@ export default function JsonPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://yourdevtools.com"
+        "item": "https://app4a.github.io/devtools"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "JSON Formatter",
-        "item": "https://yourdevtools.com/json"
+        "item": "https://app4a.github.io/devtools/json"
       }
     ]
   };

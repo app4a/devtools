@@ -10,7 +10,7 @@ export default function TimestampPage() {
     "@type": "SoftwareApplication",
     "name": "Unix Timestamp Converter",
     "description": "Free online Unix timestamp converter. Convert Unix timestamps to human-readable dates and vice versa. Support for multiple timezones and date formats.",
-    "url": "https://yourdevtools.com/timestamp",
+    "url": "https://app4a.github.io/devtools/timestamp",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },

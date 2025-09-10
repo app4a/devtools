@@ -10,7 +10,7 @@ export default function JwtPage() {
     "@type": "SoftwareApplication",
     "name": "Professional JWT Analyzer & Signature Verifier",
     "description": "Advanced JWT token analyzer with signature verification, security analysis, and multi-algorithm support. Decode, validate, and verify JWT tokens with HMAC, RSA, and ECDSA algorithms.",
-    "url": "https://yourdevtools.com/jwt",
+    "url": "https://app4a.github.io/devtools/jwt",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
