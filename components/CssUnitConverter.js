@@ -52,6 +52,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import PaletteIcon from '@mui/icons-material/Palette';
 import RuleIcon from '@mui/icons-material/Rule';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Head from 'next/head';
 
 export default function CssUnitConverter({ name, description }) {
@@ -65,6 +66,27 @@ export default function CssUnitConverter({ name, description }) {
   const [savedPresets, setSavedPresets] = useState([]);
   const [showVisualPreview, setShowVisualPreview] = useState(true);
   const [selectedProperty, setSelectedProperty] = useState('font-size');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load saved presets from localStorage on component mount
+  useEffect(() => {
+    const storedPresets = localStorage.getItem('cssUnitConverterPresets');
+    if (storedPresets) {
+      try {
+        setSavedPresets(JSON.parse(storedPresets));
+      } catch (error) {
+        console.error('Failed to parse saved presets:', error);
+      }
+    }
+    setIsInitialized(true);
+  }, []);
+
+  // Save presets to localStorage whenever savedPresets changes (but only after initialization)
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('cssUnitConverterPresets', JSON.stringify(savedPresets));
+    }
+  }, [savedPresets, isInitialized]);
 
   // Comprehensive CSS units configuration
   const units = {
@@ -283,6 +305,10 @@ export default function CssUnitConverter({ name, description }) {
     setViewportWidth(preset.viewportWidth);
     setViewportHeight(preset.viewportHeight);
     setCurrentTab(0);
+  };
+
+  const deletePreset = (presetId) => {
+    setSavedPresets(savedPresets.filter(preset => preset.id !== presetId));
   };
 
   const generateCSS = () => {
@@ -776,12 +802,22 @@ export default function CssUnitConverter({ name, description }) {
                         primary={preset.name}
                         secondary={`${preset.inputValue}${preset.inputUnit} | Font: ${preset.baseFontSize}px | Viewport: ${preset.viewportWidth}×${preset.viewportHeight} | ${preset.createdAt}`}
                       />
-                      <Button
-                        size="small"
-                        onClick={() => loadPreset(preset)}
-                      >
-                        Load
-                      </Button>
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Button
+                          size="small"
+                          onClick={() => loadPreset(preset)}
+                        >
+                          Load
+                        </Button>
+                        <IconButton
+                          size="small"
+                          onClick={() => deletePreset(preset.id)}
+                          color="error"
+                          title="Delete Preset"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Box>
                     </ListItem>
                   ))}
                 </List>

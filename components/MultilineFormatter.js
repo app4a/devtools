@@ -47,6 +47,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import CodeIcon from '@mui/icons-material/Code';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import Head from 'next/head';
 
@@ -63,6 +64,27 @@ export default function MultilineFormatter({ name, description }) {
   const [trimLines, setTrimLines] = useState(true);
   const [addLineNumbers, setAddLineNumbers] = useState(false);
   const [savedTemplates, setSavedTemplates] = useState([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load saved templates from localStorage on component mount
+  useEffect(() => {
+    const storedTemplates = localStorage.getItem('multilineFormatterTemplates');
+    if (storedTemplates) {
+      try {
+        setSavedTemplates(JSON.parse(storedTemplates));
+      } catch (error) {
+        console.error('Failed to parse saved templates:', error);
+      }
+    }
+    setIsInitialized(true);
+  }, []);
+
+  // Save templates to localStorage whenever savedTemplates changes (but only after initialization)
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('multilineFormatterTemplates', JSON.stringify(savedTemplates));
+    }
+  }, [savedTemplates, isInitialized]);
 
   const formatters = {
     array: (lines) => {
@@ -236,6 +258,10 @@ export default function MultilineFormatter({ name, description }) {
     setTrimLines(template.trimLines);
     setAddLineNumbers(template.addLineNumbers);
     setCurrentTab(0);
+  };
+
+  const deleteTemplate = (templateId) => {
+    setSavedTemplates(savedTemplates.filter(template => template.id !== templateId));
   };
 
   const applyPreset = (preset) => {
@@ -596,12 +622,22 @@ export default function MultilineFormatter({ name, description }) {
                         primary={template.name}
                         secondary={`${template.formatType} | Created: ${template.createdAt}`}
                       />
-                      <Button
-                        size="small"
-                        onClick={() => loadTemplate(template)}
-                      >
-                        Load
-                      </Button>
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Button
+                          size="small"
+                          onClick={() => loadTemplate(template)}
+                        >
+                          Load
+                        </Button>
+                        <IconButton
+                          size="small"
+                          onClick={() => deleteTemplate(template.id)}
+                          color="error"
+                          title="Delete Template"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Box>
                     </ListItem>
                   ))}
                 </List>

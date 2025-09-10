@@ -44,6 +44,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import DownloadIcon from '@mui/icons-material/Download';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Head from 'next/head';
 
 export default function NumberBaseConverter({ name, description }) {
@@ -55,6 +56,27 @@ export default function NumberBaseConverter({ name, description }) {
   const [currentTab, setCurrentTab] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [savedNumbers, setSavedNumbers] = useState([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load saved numbers from localStorage on component mount
+  useEffect(() => {
+    const storedNumbers = localStorage.getItem('numberBaseConverterNumbers');
+    if (storedNumbers) {
+      try {
+        setSavedNumbers(JSON.parse(storedNumbers));
+      } catch (error) {
+        console.error('Failed to parse saved numbers:', error);
+      }
+    }
+    setIsInitialized(true);
+  }, []);
+
+  // Save numbers to localStorage whenever savedNumbers changes (but only after initialization)
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('numberBaseConverterNumbers', JSON.stringify(savedNumbers));
+    }
+  }, [savedNumbers, isInitialized]);
 
   const allBases = [
     { value: 2, name: 'Binary', prefix: '0b', digits: '01', description: 'Computer logic, digital systems' },
@@ -226,17 +248,20 @@ export default function NumberBaseConverter({ name, description }) {
   };
 
   const swapBases = () => {
-    const temp = inputBase;
-    setInputBase(outputBase);
-    setOutputBase(temp);
+    const originalInputBase = inputBase;
+    const originalOutputBase = outputBase;
     
-    // Convert current input to new base
+    // Convert current input to the target base before swapping
     try {
-      const converted = convertNumber(inputValue, inputBase, temp);
+      const converted = convertNumber(inputValue, originalInputBase, originalOutputBase);
       setInputValue(converted);
     } catch (err) {
       // Keep current value if conversion fails
     }
+    
+    // Now swap the bases
+    setInputBase(originalOutputBase);
+    setOutputBase(originalInputBase);
   };
 
   const handleInputChange = (value) => {
@@ -258,6 +283,10 @@ export default function NumberBaseConverter({ name, description }) {
     };
     
     setSavedNumbers([...savedNumbers, newSaved]);
+  };
+
+  const deleteNumber = (numberId) => {
+    setSavedNumbers(savedNumbers.filter(number => number.id !== numberId));
   };
 
   const exportData = () => {
@@ -715,16 +744,26 @@ export default function NumberBaseConverter({ name, description }) {
                         primary={`${saved.name}: ${saved.decimal} (decimal)`}
                         secondary={`Saved: ${saved.createdAt} | Input: ${saved.inputValue} (base ${saved.inputBase})`}
                       />
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          setInputValue(saved.inputValue);
-                          setInputBase(saved.inputBase);
-                          setCurrentTab(0);
-                        }}
-                      >
-                        Load
-                      </Button>
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Button
+                          size="small"
+                          onClick={() => {
+                            setInputValue(saved.inputValue);
+                            setInputBase(saved.inputBase);
+                            setCurrentTab(0);
+                          }}
+                        >
+                          Load
+                        </Button>
+                        <IconButton
+                          size="small"
+                          onClick={() => deleteNumber(saved.id)}
+                          color="error"
+                          title="Delete Number"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Box>
                     </ListItem>
                   ))}
                 </List>

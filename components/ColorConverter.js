@@ -44,6 +44,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import InfoIcon from '@mui/icons-material/Info';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { SketchPicker } from 'react-color';
 
 import Head from 'next/head';
@@ -195,6 +196,27 @@ export default function ColorConverter({ name, description }) {
   const [contrastBgColor, setContrastBgColor] = useState('#FFFFFF');
   const [savedPalettes, setSavedPalettes] = useState([]);
   const [harmonyType, setHarmonyType] = useState('complementary');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load saved palettes from localStorage on component mount
+  useEffect(() => {
+    const storedPalettes = localStorage.getItem('colorConverterPalettes');
+    if (storedPalettes) {
+      try {
+        setSavedPalettes(JSON.parse(storedPalettes));
+      } catch (error) {
+        console.error('Failed to parse saved palettes:', error);
+      }
+    }
+    setIsInitialized(true);
+  }, []);
+
+  // Save palettes to localStorage whenever savedPalettes changes (but only after initialization)
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('colorConverterPalettes', JSON.stringify(savedPalettes));
+    }
+  }, [savedPalettes, isInitialized]);
 
   const colorFormats = useMemo(() => {
     const rgb = colorUtils.hexToRgb(baseColor);
@@ -258,6 +280,10 @@ export default function ColorConverter({ name, description }) {
       createdAt: new Date().toLocaleDateString()
     };
     setSavedPalettes([...savedPalettes, newPalette]);
+  };
+
+  const deletePalette = (paletteId) => {
+    setSavedPalettes(savedPalettes.filter(palette => palette.id !== paletteId));
   };
 
   const exportPalette = () => {
@@ -680,6 +706,14 @@ export default function ColorConverter({ name, description }) {
                           />
                         ))}
                       </Box>
+                      <IconButton
+                        size="small"
+                        onClick={() => deletePalette(palette.id)}
+                        color="error"
+                        title="Delete Palette"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
                     </ListItem>
                   ))}
                 </List>
