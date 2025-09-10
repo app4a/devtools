@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# Required permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 # Allow one concurrent deployment
 concurrency:
   group: "pages"
@@ -22,7 +28,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
         
     - name: Install dependencies
@@ -43,7 +49,7 @@ jobs:
         # cp CNAME out/ || true
         
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: ./out
 
@@ -66,4 +72,4 @@ jobs:
     steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
