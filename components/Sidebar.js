@@ -96,8 +96,19 @@ export default function Sidebar({ open, drawerWidth, collapsedDrawerWidth, handl
                 <AccordionDetails sx={{ p: 0 }}>
                   <List component="div" disablePadding>
                     {category.tools.map((tool) => (
-                      <ListItem component={Link} href={tool.path} key={tool.name} sx={{ pl: 4, ...(router.pathname === tool.path && { backgroundColor: 'rgba(255, 255, 255, 0.1)' }) }}>
-                        <ListItemText primary={tool.name} />
+                      <ListItem component={Link} href={tool.path} key={tool.name} sx={{ pl: 2.5, pr: 1, ...(router.pathname === tool.path && { backgroundColor: 'rgba(255, 255, 255, 0.1)' }) }}>
+                        <ListItemText 
+                          primary={tool.name} 
+                          primaryTypographyProps={{
+                            fontSize: '0.875rem',
+                            lineHeight: 1.2,
+                            sx: {
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap'
+                            }
+                          }}
+                        />
                       </ListItem>
                     ))}
                   </List>

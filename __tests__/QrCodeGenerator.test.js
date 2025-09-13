@@ -6,7 +6,29 @@ import QrCodeGenerator from '../components/QrCodeGenerator';
 // Mock canvas for testing environment
 beforeAll(() => {
   Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-    value: () => null,
+    value: (contextType) => {
+      if (contextType === '2d') {
+        return {
+          createImageData: jest.fn(() => ({ data: new Uint8ClampedArray(4) })),
+          putImageData: jest.fn(),
+          fillRect: jest.fn(),
+          canvas: {
+            width: 100,
+            height: 100,
+            toDataURL: jest.fn(() => 'data:image/png;base64,test')
+          }
+        };
+      }
+      return null;
+    },
+  });
+  
+  // Mock navigator.clipboard
+  Object.defineProperty(navigator, 'clipboard', {
+    value: {
+      writeText: jest.fn(() => Promise.resolve()),
+    },
+    writable: true,
   });
 });
 

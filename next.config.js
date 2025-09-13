@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 // Determine if we're building for GitHub Pages
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
@@ -6,7 +9,6 @@ const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'developer-tool
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['react-syntax-highlighter'],
   output: 'export',
   
   // GitHub Pages configuration
@@ -53,17 +55,36 @@ const nextConfig = {
         cacheGroups: {
           default: false,
           vendors: false,
+          // Split large libraries into separate chunks
+          mui: {
+            name: 'mui',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/]@mui[\\/]/,
+            priority: 40
+          },
+          react: {
+            name: 'react',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            priority: 35
+          },
+          markdown: {
+            name: 'markdown',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/](react-markdown|remark|rehype|katex|highlight\.js)[\\/]/,
+            priority: 30
+          },
+          syntax: {
+            name: 'syntax',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/](prismjs)[\\/]/,
+            priority: 25
+          },
           vendor: {
             name: 'vendor',
             chunks: 'all',
             test: /node_modules/,
             priority: 20
-          },
-          mui: {
-            name: 'mui',
-            chunks: 'all',
-            test: /[\\/]node_modules[\\/]@mui[\\/]/,
-            priority: 30
           },
           common: {
             name: 'common',
@@ -84,4 +105,4 @@ const nextConfig = {
   // Security headers should be configured at the hosting level (Vercel, Netlify, etc.)
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

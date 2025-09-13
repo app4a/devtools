@@ -38,8 +38,21 @@ import 'prismjs/components/prism-json';
 import Head from 'next/head';
 
 const LineNumberedEditor = ({ value, onValueChange, readOnly, placeholder, error }) => {
-  const lineCount = value.split('\n').length;
-  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
+  const lineNumbers = useMemo(() => {
+    if (!value) {
+      return '1';
+    }
+    
+    const lines = value.split('\n');
+    const lineCount = lines.length;
+    
+    // Show line numbers for actual content lines
+    // If the last character is a newline, show one additional line for the cursor
+    const showExtraLine = value.endsWith('\n');
+    const totalLines = showExtraLine ? lineCount + 1 : lineCount;
+    
+    return Array.from({ length: totalLines }, (_, i) => i + 1).join('\n');
+  }, [value]);
 
   return (
     <Paper 
@@ -60,15 +73,16 @@ const LineNumberedEditor = ({ value, onValueChange, readOnly, placeholder, error
           userSelect: 'none',
           p: 1,
           pr: 2,
-          color: 'text.disabled',
+          color: '#666',
           borderRight: 1,
           borderColor: 'divider',
-          overflow: 'hidden',
+          overflow: 'auto',
           fontFamily: 'monospace',
           fontSize: 14,
           lineHeight: '21px',
           margin: 0,
-          backgroundColor: 'grey.50'
+          backgroundColor: '#f5f5f5',
+          minWidth: '40px'
         }}
       >
         {lineNumbers}
