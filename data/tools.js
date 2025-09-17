@@ -11,6 +11,7 @@ export const toolCategories = [
       { name: 'URL Encoder/Decoder', path: '/url', description: 'Professional URL encoding tool supporting multiple types (URI Component, Full URI, HTML, Base64), URL analysis, and file operations.' },
       { name: 'HTML Entity Tool', path: '/html-entities', description: 'Comprehensive HTML entity encoder/decoder with 200+ entities, category filtering, security analysis, and bulk processing.' },
       { name: 'Unicode & Emoji Browser', path: '/unicode-browser', description: 'Comprehensive Unicode and emoji browser with character search, detailed information, code point conversion, HTML entities, escape codes, and favorites management. Perfect for developers and designers.' },
+      { name: 'Text Sort & Dedup Tool', path: '/sort-dedup', description: 'Professional text processing tool for sorting lines alphabetically or numerically, removing duplicates, and analyzing text statistics. Perfect for cleaning email lists, log files, and data sets.' },
     ],
   },
   {
