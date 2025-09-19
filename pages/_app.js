@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import React from 'react';
 import Head from 'next/head';
 import Sidebar from '../components/Sidebar';
+import SearchBar from '../components/SearchBar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -97,12 +98,26 @@ function MyApp({ Component, pageProps }) {
         <CssBaseline />
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
           <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-            <Toolbar>
+            <Toolbar sx={{ 
+              flexWrap: { xs: 'wrap', sm: 'nowrap' },
+              gap: { xs: 1, sm: 0 },
+              py: { xs: 0.5, sm: 1 }
+            }}>
               <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>     
-                <Typography variant="h6" noWrap component="div">
+                <Typography 
+                  variant="h6" 
+                  noWrap 
+                  component="div" 
+                  sx={{ 
+                    mr: { xs: 1, sm: 2 }, 
+                    minWidth: 'fit-content',
+                    fontSize: { xs: '1rem', sm: '1.25rem' }
+                  }}
+                >
                   Developer Tools - Free Online Utilities
                 </Typography>
-              </Link>   
+              </Link>
+              <SearchBar />
             </Toolbar>
           </AppBar>
           <Sidebar 
@@ -116,7 +131,7 @@ function MyApp({ Component, pageProps }) {
             sx={{ 
               flexGrow: 1, 
               p: { xs: 1, sm: 2, md: 3 }, 
-              mt: 8,
+              mt: { xs: 9, sm: 8 },
               width: { xs: '100%', sm: 'calc(100% - 240px)' },
               overflow: 'hidden'
             }}
