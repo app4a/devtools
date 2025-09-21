@@ -466,48 +466,80 @@ export default function MultilineFormatter({ name, description }) {
 
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12, md: 6 }}>
-                    <Typography variant="subtitle2" gutterBottom>
-                      Input Text ({textStats?.totalLines || 0} lines)
-                    </Typography>
-                    <TextField
-                      multiline
-                      rows={15}
-                      fullWidth
-                      placeholder="Paste your multiline text here..."
-                      value={inputText}
-                      onChange={(e) => setInputText(e.target.value)}
-                      variant="outlined"
-                      InputProps={{
-                        style: { fontFamily: 'monospace', fontSize: '0.9rem' }
-                      }}
-                    />
+                    <Paper elevation={2} sx={{ height: 550 }}>
+                      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Typography variant="h6">
+                          Input Text ({textStats?.totalLines || 0} lines)
+                        </Typography>
+                      </Box>
+                      <TextField
+                        multiline
+                        fullWidth
+                        placeholder="Paste your multiline text here..."
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        variant="outlined"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            height: 'calc(550px - 73px)',
+                            alignItems: 'flex-start',
+                            overflow: 'hidden',
+                            '& fieldset': { border: 'none' },
+                            '& textarea': {
+                              fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
+                              fontSize: '14px',
+                              verticalAlign: 'top',
+                              overflow: 'auto !important',
+                              resize: 'none',
+                              height: '100% !important',
+                              maxHeight: '100%'
+                            }
+                          }
+                        }}
+                      />
+                    </Paper>
                   </Grid>
                   
                   <Grid size={{ xs: 12, md: 6 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                      <Typography variant="subtitle2">
-                        Output Text ({formatType})
-                      </Typography>
-                      <IconButton 
-                        size="small" 
-                        onClick={() => handleCopy()}
-                        disabled={!outputText}
-                        title="Copy Output"
-                      >
-                        <ContentCopyIcon />
-                      </IconButton>
-                    </Box>
-                    <TextField
-                      multiline
-                      rows={15}
-                      fullWidth
-                      value={outputText}
-                      variant="outlined"
-                      InputProps={{
-                        readOnly: true,
-                        style: { fontFamily: 'monospace', fontSize: '0.9rem' }
-                      }}
-                    />
+                    <Paper elevation={2} sx={{ height: 550 }}>
+                      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Typography variant="h6">
+                          Output Text ({formatType})
+                        </Typography>
+                        <IconButton 
+                          size="small" 
+                          onClick={() => handleCopy()}
+                          disabled={!outputText}
+                          title="Copy Output"
+                        >
+                          <ContentCopyIcon />
+                        </IconButton>
+                      </Box>
+                      <TextField
+                        multiline
+                        fullWidth
+                        value={outputText}
+                        variant="outlined"
+                        InputProps={{ readOnly: true }}
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            height: 'calc(550px - 73px)',
+                            alignItems: 'flex-start',
+                            overflow: 'hidden',
+                            '& fieldset': { border: 'none' },
+                            '& textarea': {
+                              fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
+                              fontSize: '14px',
+                              verticalAlign: 'top',
+                              overflow: 'auto !important',
+                              resize: 'none',
+                              height: '100% !important',
+                              maxHeight: '100%'
+                            }
+                          }
+                        }}
+                      />
+                    </Paper>
                   </Grid>
                 </Grid>
               </Paper>

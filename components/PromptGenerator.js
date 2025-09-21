@@ -393,7 +393,7 @@ export default function PromptGenerator({ name, description }) {
                 <TextField
                   label="Your Prompt"
                   multiline
-                  rows={6}
+                  rows={12}
                   fullWidth
                   value={customPrompt}
                   onChange={(e) => setCustomPrompt(e.target.value)}

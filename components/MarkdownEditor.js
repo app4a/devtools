@@ -95,7 +95,7 @@ const LineNumberedEditor = ({ value, onValueChange, placeholder }) => {
           fontSize: 14,
           lineHeight: '21px',
           margin: 0,
-          backgroundColor: '#f5f5f5',
+          backgroundColor: 'action.hover',
           minWidth: '40px'
         }}
       >
@@ -158,7 +158,7 @@ const MarkdownPreview = ({ content, renderMode }) => {
               return (
                 <code
                   style={{
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: 'action.hover',
                     padding: '2px 4px',
                     borderRadius: '3px',
                     fontFamily: 'monospace',

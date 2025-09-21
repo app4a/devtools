@@ -265,7 +265,7 @@ ${batchResults.map(item => `${item.id}. ${item.text} | ${item.tokens} tokens | $
                 <TextField
                   label="Text to Analyze"
                   multiline
-                  rows={8}
+                  rows={15}
                   fullWidth
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
@@ -331,7 +331,7 @@ ${batchResults.map(item => `${item.id}. ${item.text} | ${item.tokens} tokens | $
                 <TextField
                   label="Batch Text (one per line)"
                   multiline
-                  rows={6}
+                  rows={12}
                   fullWidth
                   value={batchTexts}
                   onChange={(e) => setBatchTexts(e.target.value)}
