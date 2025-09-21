@@ -14,6 +14,15 @@ export const toolCategories = [
       { name: 'Text Sort & Dedup Tool', path: '/sort-dedup', description: 'Professional text processing tool for sorting lines alphabetically or numerically, removing duplicates, and analyzing text statistics. Perfect for cleaning email lists, log files, and data sets.' },
       { name: 'Text Case Converter', path: '/text-case', description: 'Convert text between camelCase, PascalCase, snake_case, kebab-case, UPPER_CASE and more. Batch processing, favorites, and professional formatting options for developers.' },
       { name: 'Lorem Ipsum Generator', path: '/lorem-ipsum', description: 'Generate Lorem Ipsum, Tech Lorem, and Corporate Speak placeholder text. Customizable paragraphs, sentences, words with HTML formatting options and statistics.' },
+      { name: 'Markdown to HTML Converter', path: '/markdown-converter', description: 'Convert Markdown to clean HTML with syntax highlighting, GitHub-flavored markdown support, and custom CSS themes. Live preview and export options for documentation.' },
+    ],
+  },
+  {
+    name: 'AI Tools',
+    tools: [
+      { name: 'AI Prompt Generator & Optimizer', path: '/prompt-generator', description: 'Generate and optimize AI prompts for ChatGPT, Claude, Gemini. Features templates, role-based prompts, and optimization suggestions for better AI interactions.' },
+      { name: 'OpenAI Token Counter & Cost Calculator', path: '/token-counter', description: 'Count tokens and calculate costs for OpenAI API calls. Supports GPT-3.5, GPT-4, and other models with accurate pricing and batch processing.' },
+      { name: 'AI-Powered Mock Data Generator', path: '/mock-data-generator', description: 'Generate realistic test data for APIs, databases, and applications. Create JSON, CSV, SQL formats with customizable schemas and AI-powered realistic data.' },
     ],
   },
   {
@@ -46,6 +55,7 @@ export const toolCategories = [
       { name: 'QR Code Generator', path: '/qr-code', description: 'Professional QR code generator with single/batch generation, multiple formats (PNG/SVG/PDF), customization, and template browser.' },
       { name: 'SQL Query Formatter', path: '/sql-formatter', description: 'Professional SQL formatting tool with syntax highlighting, validation, analysis, and support for multiple database dialects (MySQL, PostgreSQL, SQL Server, Oracle, SQLite).' },
       { name: 'JavaScript Formatter', path: '/javascript-formatter', description: 'Format, beautify, and minify JavaScript code online. Syntax validation, customizable indentation, error detection, and code optimization tools.' },
+      { name: 'CSV to JSON/XML Converter', path: '/csv-converter', description: 'Convert data between CSV, JSON, and XML formats with bidirectional conversion. Custom delimiters, data validation, and export options for data transformation.' },
     ],
   },
   {
