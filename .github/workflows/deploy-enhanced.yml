@@ -116,6 +116,9 @@ jobs:
             if [[ $PAGE_PATH == "index" ]]; then
               NEW_PAGES+=("/")
               echo "✅ Added homepage: /"
+            elif [[ $PAGE_PATH == "blog/index" ]]; then
+              NEW_PAGES+=("/blog")
+              echo "✅ Added blog homepage: /blog"
             elif [[ $PAGE_PATH == blog/* ]]; then
               NEW_PAGES+=("/$PAGE_PATH")
               echo "✅ Added blog page: /$PAGE_PATH"
