@@ -15,9 +15,57 @@ import SEO from '../../components/SEO';
 
 const blogPosts = [
   {
-    title: "Complete Guide to JSON Formatting and Validation in 2024",
+    title: "AI in Development: Complete Guide to Prompt Engineering and Token Optimization",
+    excerpt: "Master AI integration in development workflows. Learn prompt engineering, token optimization, cost management, and best practices for ChatGPT, Claude, and Gemini integration.",
+    slug: "ai-development-guide-2025",
+    category: "AI Development",
+    readTime: "12 min read",
+    keywords: ["ai development", "prompt engineering", "token optimization", "chatgpt development"]
+  },
+  {
+    title: "CSS Mastery: Units, Flexbox, Grid, and Modern Styling Techniques",
+    excerpt: "Master modern CSS with comprehensive guide to units, flexbox, grid, responsive design, and optimization techniques. Learn CSS best practices for 2025.",
+    slug: "css-mastery-guide-2025",
+    category: "CSS Development",
+    readTime: "14 min read",
+    keywords: ["css mastery", "css units", "flexbox guide", "css grid"]
+  },
+  {
+    title: "Data Transformation Guide: CSV, JSON, XML Conversion Best Practices",
+    excerpt: "Master data transformation between CSV, JSON, and XML formats. Learn conversion best practices, data validation, API integration, and optimization techniques.",
+    slug: "data-transformation-guide-2025",
+    category: "Data Processing",
+    readTime: "11 min read",
+    keywords: ["data transformation", "csv to json", "json to xml", "data conversion"]
+  },
+  {
+    title: "Web Security Essentials: UUID Generation, Hash Functions, and Password Management",
+    excerpt: "Master web security fundamentals: UUID generation for unique identifiers, cryptographic hash functions, secure password management, and authentication best practices.",
+    slug: "web-security-essentials-2025",
+    category: "Security",
+    readTime: "13 min read",
+    keywords: ["web security", "uuid generation", "hash functions", "password security"]
+  },
+  {
+    title: "Image Optimization and Performance: Modern Web Development Guide",
+    excerpt: "Master image optimization for web performance: format selection, compression techniques, responsive images, lazy loading, and modern formats like WebP and AVIF.",
+    slug: "image-optimization-guide-2025",
+    category: "Performance",
+    readTime: "10 min read",
+    keywords: ["image optimization", "web performance", "webp format", "avif compression"]
+  },
+  {
+    title: "Time Zone Management and Scheduling for Global Development Teams",
+    excerpt: "Master time zone management for global teams: UTC best practices, scheduling coordination, timestamp handling, cron jobs, and world clock implementation.",
+    slug: "timezone-management-guide-2025",
+    category: "Team Management",
+    readTime: "9 min read",
+    keywords: ["timezone management", "global teams", "utc timestamps", "world clock"]
+  },
+  {
+    title: "Complete Guide to JSON Formatting and Validation in 2025",
     excerpt: "Master JSON formatting with our comprehensive guide. Learn best practices, common errors, and advanced validation techniques for modern web development.",
-    slug: "json-formatting-guide-2024",
+    slug: "json-formatting-guide-2025",
     category: "Web Development",
     readTime: "8 min read",
     keywords: ["json formatting", "json validation", "web development", "api design"]
@@ -49,7 +97,7 @@ const blogPosts = [
   {
     title: "Developer Productivity: Essential Online Tools Every Programmer Needs",
     excerpt: "Boost your development productivity with these essential online tools. From code formatters to converters, discover tools that save time and reduce errors.",
-    slug: "essential-developer-tools-2024",
+    slug: "essential-developer-tools-2025",
     category: "Productivity",
     readTime: "10 min read",
     keywords: ["developer tools", "productivity", "programming tools", "web development"]
@@ -69,7 +117,7 @@ export default function BlogIndex() {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "Developer Tools Blog",
-    "description": "Expert guides, tutorials, and best practices for web developers. Learn about JSON, Base64, JWT, regex, and other essential development tools.",
+    "description": "Expert guides, tutorials, and best practices for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools.",
     "url": "https://app4a.github.io/devtools/blog",
     "publisher": {
       "@type": "Organization",
@@ -93,13 +141,19 @@ export default function BlogIndex() {
     <Container maxWidth="lg">
       <SEO
         title="Developer Tools Blog - Guides, Tutorials & Best Practices"
-        description="Expert guides and tutorials for web developers. Learn JSON formatting, Base64 encoding, JWT security, regex patterns, and essential development tools and techniques."
+        description="Expert guides and tutorials for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools."
         canonical="/blog"
         schema={blogSchema}
         keywords={[
           'developer blog',
           'web development tutorials',
           'programming guides',
+          'ai development guide',
+          'css mastery',
+          'data transformation',
+          'web security essentials',
+          'image optimization',
+          'timezone management',
           'json tutorial',
           'base64 guide',
           'jwt security',

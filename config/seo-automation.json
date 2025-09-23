@@ -1,0 +1,37 @@
+{
+  "automation": {
+    "enabled": true,
+    "triggerOnDeploy": true,
+    "triggerOnNewPages": true,
+    "delayAfterDeploy": 300
+  },
+  "searchEngines": {
+    "google": {
+      "enabled": true,
+      "indexingAPI": true,
+      "sitemapPing": true,
+      "rateLimitMs": 1000
+    },
+    "bing": {
+      "enabled": true,
+      "webmasterAPI": true,
+      "sitemapPing": true,
+      "rateLimitMs": 500
+    },
+    "yandex": {
+      "enabled": false,
+      "sitemapPing": false
+    }
+  },
+  "submission": {
+    "retryAttempts": 1,
+    "retryDelayMs": 5000,
+    "batchSize": 10,
+    "logActivity": true
+  },
+  "monitoring": {
+    "trackSubmissions": true,
+    "alertOnFailures": true,
+    "generateReports": true
+  }
+}

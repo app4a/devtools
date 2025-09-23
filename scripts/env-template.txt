@@ -1,0 +1,22 @@
+# SEO Automation Configuration
+# Copy this content to .env.local in your project root and fill in your API credentials
+
+# Google Search Console API
+# 1. Go to https://console.cloud.google.com/
+# 2. Enable "Web Search Indexing API"
+# 3. Create a Service Account and download JSON key
+# 4. Paste the entire JSON content here (as a single line)
+GOOGLE_SERVICE_ACCOUNT_KEY={"type":"service_account","project_id":"your-project-id",...}
+
+# Bing Webmaster Tools API
+# 1. Go to https://www.bing.com/webmasters/
+# 2. Add and verify your site
+# 3. Go to Settings > API Access and generate API key
+BING_WEBMASTER_API_KEY=your-bing-api-key-here
+
+# Optional: Notification Webhooks
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/your/slack/webhook
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/your/discord/webhook
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://app4a.github.io/devtools

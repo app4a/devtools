@@ -14,11 +14,11 @@ import {
 import Link from 'next/link';
 import SEO from '../../components/SEO';
 
-export default function JsonFormattingGuide() {
+export default function JsonFormattingGuide2025() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Complete Guide to JSON Formatting and Validation in 2024",
+    "headline": "Complete Guide to JSON Formatting and Validation in 2025",
     "description": "Master JSON formatting with our comprehensive guide. Learn best practices, common errors, and advanced validation techniques for modern web development.",
     "image": "https://app4a.github.io/devtools/logo512.png",
     "author": {
@@ -33,20 +33,20 @@ export default function JsonFormattingGuide() {
         "url": "https://app4a.github.io/devtools/logo512.png"
       }
     },
-    "datePublished": "2024-01-01",
-    "dateModified": "2024-01-01",
+    "datePublished": "2025-09-23",
+    "dateModified": "2025-09-23",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://app4a.github.io/devtools/blog/json-formatting-guide-2024"
+      "@id": "https://app4a.github.io/devtools/blog/json-formatting-guide-2025"
     }
   };
 
   return (
     <Container maxWidth="md">
       <SEO
-        title="Complete Guide to JSON Formatting and Validation in 2024"
+        title="Complete Guide to JSON Formatting and Validation in 2025"
         description="Master JSON formatting with our comprehensive guide. Learn best practices, common errors, validation techniques, and advanced tips for modern web development and API design."
-        canonical="/blog/json-formatting-guide-2024"
+        canonical="/blog/json-formatting-guide-2025"
         schema={articleSchema}
         keywords={[
           'json formatting',
@@ -62,7 +62,7 @@ export default function JsonFormattingGuide() {
       
       <Box sx={{ py: 4 }}>
         <Typography variant="h3" component="h1" gutterBottom>
-          Complete Guide to JSON Formatting and Validation in 2024
+          Complete Guide to JSON Formatting and Validation in 2025
         </Typography>
         
         <Box sx={{ mb: 3 }}>
