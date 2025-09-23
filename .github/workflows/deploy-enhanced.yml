@@ -153,10 +153,13 @@ jobs:
         if [ $? -eq 0 ]; then
           echo "✅ Valid JSON created: $PAGES_JSON"
           echo "new_pages=$PAGES_JSON" >> $GITHUB_OUTPUT
+          # Write JSON to file for Node.js scripts
+          echo "$PAGES_JSON" > new-pages.json
         else
           echo "❌ Invalid JSON format: $PAGES_JSON"
           echo "🔧 Falling back to empty array"
           echo "new_pages=[]" >> $GITHUB_OUTPUT
+          echo "[]" > new-pages.json
         fi
 
     - name: Submit URLs to Google Search Console
@@ -182,7 +185,7 @@ jobs:
         const fs = require('fs');
         
         async function submitToGoogle() {
-          const newPages = JSON.parse('${{ steps.changes.outputs.new_pages }}');
+          const newPages = JSON.parse(fs.readFileSync('new-pages.json', 'utf8'));
           if (newPages.length === 0) return;
           
           const auth = new google.auth.GoogleAuth({
@@ -230,9 +233,10 @@ jobs:
         # Submit URLs to Bing
         node -e "
         const axios = require('axios');
+        const fs = require('fs');
         
         async function submitToBing() {
-          const newPages = JSON.parse('${{ steps.changes.outputs.new_pages }}');
+          const newPages = JSON.parse(fs.readFileSync('new-pages.json', 'utf8'));
           if (newPages.length === 0) return;
           
           const apiKey = process.env.BING_WEBMASTER_API_KEY;
@@ -281,4 +285,4 @@ jobs:
 
     - name: Clean up
       run: |
-        rm -f google-service-account.json
+        rm -f google-service-account.json new-pages.json
