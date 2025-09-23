@@ -199,6 +199,8 @@ jobs:
           for (const page of newPages) {
             try {
               const fullUrl = 'https://app4a.github.io/devtools' + page;
+              console.log('🔗 Submitting to Google:', fullUrl);
+              
               await indexing.urlNotifications.publish({
                 requestBody: {
                   url: fullUrl,
@@ -208,7 +210,12 @@ jobs:
               console.log('✅ Submitted to Google:', fullUrl);
               await new Promise(resolve => setTimeout(resolve, 1000));
             } catch (error) {
-              console.error('❌ Failed to submit:', page, error.message);
+              console.error('❌ Failed to submit:', page);
+              console.error('   Full URL:', 'https://app4a.github.io/devtools' + page);
+              console.error('   Error:', error.message);
+              if (error.response) {
+                console.error('   Response:', error.response.data);
+              }
             }
           }
         }
@@ -245,6 +252,9 @@ jobs:
           for (const page of newPages) {
             try {
               const fullUrl = siteUrl + page.substring(1);
+              console.log('🔗 Submitting to Bing:', fullUrl);
+              console.log('   Site URL:', siteUrl);
+              console.log('   API Key present:', !!apiKey);
               
               await axios.post(
                 'https://ssl.bing.com/webmaster/api.svc/json/SubmitUrl',
@@ -263,7 +273,13 @@ jobs:
               console.log('✅ Submitted to Bing:', fullUrl);
               await new Promise(resolve => setTimeout(resolve, 500));
             } catch (error) {
-              console.error('❌ Failed to submit:', page, error.response?.data || error.message);
+              console.error('❌ Failed to submit:', page);
+              console.error('   Full URL:', siteUrl + page.substring(1));
+              console.error('   Error:', error.message);
+              if (error.response) {
+                console.error('   Status:', error.response.status);
+                console.error('   Response:', error.response.data);
+              }
             }
           }
         }
@@ -275,10 +291,11 @@ jobs:
       run: |
         SITEMAP_URL="https://app4a.github.io/devtools/sitemap.xml"
         
-        # Ping Google
-        curl -s "https://www.google.com/ping?sitemap=${SITEMAP_URL}" || echo "Google ping failed"
+        # Note: Google ping is deprecated since June 2023
+        echo "ℹ️  Google sitemap ping deprecated (use Search Console instead)"
         
         # Ping Bing
+        echo "🔗 Pinging Bing sitemap: ${SITEMAP_URL}"
         curl -s "https://www.bing.com/ping?sitemap=${SITEMAP_URL}" || echo "Bing ping failed"
         
         echo "✅ Sitemap ping completed"
