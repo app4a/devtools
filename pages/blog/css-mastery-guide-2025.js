@@ -38,7 +38,7 @@ export default function CSSMasteryGuide2025() {
       }
     },
     "datePublished": "2025-09-23",
-    "dateModified": "2025-09-24",
+    "dateModified": "2025-09-23",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://app4a.github.io/devtools/blog/css-mastery-guide-2025"
