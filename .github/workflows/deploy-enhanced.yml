@@ -1,0 +1,252 @@
+name: Deploy to GitHub Pages with SEO Automation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# Required permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2  # For detecting changed files
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm test -- --passWithNoTests
+      
+    - name: Build and export
+      env:
+        GITHUB_PAGES: true
+        NEXT_PUBLIC_BASE_PATH: ${{ github.event.repository.name }}
+      run: |
+        npm run build
+        # Create .nojekyll to prevent GitHub from processing as Jekyll site
+        touch out/.nojekyll
+        
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./out
+
+  deploy:
+    # Only run deploy on main/master branch pushes (not PRs)
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    runs-on: ubuntu-latest
+    needs: build
+    
+    # Grant GITHUB_TOKEN the permissions required to deploy to Pages
+    permissions:
+      pages: write
+      id-token: write
+      
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+  seo-automation:
+    # Only run SEO automation after successful deployment on main/master
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    runs-on: ubuntu-latest
+    needs: deploy
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2  # Get current and previous commit for diff
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Detect changed pages
+      id: changes
+      run: |
+        # Get list of changed files
+        CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+        echo "Changed files: $CHANGED_FILES"
+        
+        # Extract new/modified pages and blog posts
+        NEW_PAGES=()
+        
+        for file in $CHANGED_FILES; do
+          if [[ $file == pages/*.js && $file != pages/_* ]]; then
+            # Convert file path to URL path
+            PAGE_PATH=${file#pages/}
+            PAGE_PATH=${PAGE_PATH%.js}
+            
+            if [[ $PAGE_PATH == "index" ]]; then
+              NEW_PAGES+=("/")
+            elif [[ $PAGE_PATH == blog/* ]]; then
+              NEW_PAGES+=("/$PAGE_PATH")
+            else
+              NEW_PAGES+=("/$PAGE_PATH")
+            fi
+          fi
+        done
+        
+        # Convert array to JSON for output
+        PAGES_JSON=$(printf '%s\n' "${NEW_PAGES[@]}" | jq -R . | jq -s .)
+        echo "new_pages=$PAGES_JSON" >> $GITHUB_OUTPUT
+        echo "New pages detected: $PAGES_JSON"
+
+    - name: Submit URLs to Google Search Console
+      if: steps.changes.outputs.new_pages != '[]'
+      env:
+        GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+      run: |
+        # Only proceed if API key is available
+        if [ -z "$GOOGLE_SERVICE_ACCOUNT_KEY" ]; then
+          echo "⚠️ GOOGLE_SERVICE_ACCOUNT_KEY not found - skipping Google submission"
+          exit 0
+        fi
+        
+        # Create service account key file
+        echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > google-service-account.json
+        
+        # Install required packages
+        npm install googleapis
+        
+        # Submit URLs to Google
+        node -e "
+        const { google } = require('googleapis');
+        const fs = require('fs');
+        
+        async function submitToGoogle() {
+          const newPages = JSON.parse('${{ steps.changes.outputs.new_pages }}');
+          if (newPages.length === 0) return;
+          
+          const auth = new google.auth.GoogleAuth({
+            keyFile: 'google-service-account.json',
+            scopes: ['https://www.googleapis.com/auth/indexing'],
+          });
+          
+          const authClient = await auth.getClient();
+          const indexing = google.indexing({ version: 'v3', auth: authClient });
+          
+          for (const page of newPages) {
+            try {
+              const fullUrl = 'https://app4a.github.io/devtools' + page;
+              await indexing.urlNotifications.publish({
+                requestBody: {
+                  url: fullUrl,
+                  type: 'URL_UPDATED',
+                },
+              });
+              console.log('✅ Submitted to Google:', fullUrl);
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            } catch (error) {
+              console.error('❌ Failed to submit:', page, error.message);
+            }
+          }
+        }
+        
+        submitToGoogle().catch(console.error);
+        "
+
+    - name: Submit URLs to Bing Webmaster
+      if: steps.changes.outputs.new_pages != '[]'
+      env:
+        BING_WEBMASTER_API_KEY: ${{ secrets.BING_WEBMASTER_API_KEY }}
+      run: |
+        # Only proceed if API key is available
+        if [ -z "$BING_WEBMASTER_API_KEY" ]; then
+          echo "⚠️ BING_WEBMASTER_API_KEY not found - skipping Bing submission"
+          exit 0
+        fi
+        
+        # Install axios for HTTP requests
+        npm install axios
+        
+        # Submit URLs to Bing
+        node -e "
+        const axios = require('axios');
+        
+        async function submitToBing() {
+          const newPages = JSON.parse('${{ steps.changes.outputs.new_pages }}');
+          if (newPages.length === 0) return;
+          
+          const apiKey = process.env.BING_WEBMASTER_API_KEY;
+          const siteUrl = 'https://app4a.github.io/devtools/';
+          
+          for (const page of newPages) {
+            try {
+              const fullUrl = siteUrl + page.substring(1);
+              
+              await axios.post(
+                'https://ssl.bing.com/webmaster/api.svc/json/SubmitUrl',
+                {
+                  siteUrl: siteUrl,
+                  url: fullUrl
+                },
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + apiKey
+                  }
+                }
+              );
+              
+              console.log('✅ Submitted to Bing:', fullUrl);
+              await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (error) {
+              console.error('❌ Failed to submit:', page, error.response?.data || error.message);
+            }
+          }
+        }
+        
+        submitToBing().catch(console.error);
+        "
+
+    - name: Ping search engines about sitemap
+      run: |
+        SITEMAP_URL="https://app4a.github.io/devtools/sitemap.xml"
+        
+        # Ping Google
+        curl -s "https://www.google.com/ping?sitemap=${SITEMAP_URL}" || echo "Google ping failed"
+        
+        # Ping Bing
+        curl -s "https://www.bing.com/ping?sitemap=${SITEMAP_URL}" || echo "Bing ping failed"
+        
+        echo "✅ Sitemap ping completed"
+
+    - name: Clean up
+      run: |
+        rm -f google-service-account.json
