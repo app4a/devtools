@@ -141,7 +141,7 @@ export default function BlogIndex() {
     <Container maxWidth="lg">
       <SEO
         title="Developer Tools Blog - Guides, Tutorials & Best Practices"
-        description="Expert guides and tutorials for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools."
+        description="Expert guides and tutorials for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools for 2025."
         canonical="/blog"
         schema={blogSchema}
         keywords={[
