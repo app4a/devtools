@@ -101,12 +101,13 @@ jobs:
       run: |
         # Get list of changed files
         CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-        echo "Changed files: $CHANGED_FILES"
+        echo "🔍 Changed files: $CHANGED_FILES"
         
         # Extract new/modified pages and blog posts
         NEW_PAGES=()
         
         for file in $CHANGED_FILES; do
+          echo "📄 Processing file: $file"
           if [[ $file == pages/*.js && $file != pages/_* ]]; then
             # Convert file path to URL path
             PAGE_PATH=${file#pages/}
@@ -114,18 +115,46 @@ jobs:
             
             if [[ $PAGE_PATH == "index" ]]; then
               NEW_PAGES+=("/")
+              echo "✅ Added homepage: /"
             elif [[ $PAGE_PATH == blog/* ]]; then
               NEW_PAGES+=("/$PAGE_PATH")
+              echo "✅ Added blog page: /$PAGE_PATH"
             else
               NEW_PAGES+=("/$PAGE_PATH")
+              echo "✅ Added tool page: /$PAGE_PATH"
             fi
+          else
+            echo "⏭️  Skipped: $file (not a page or is internal)"
           fi
         done
         
+        echo "📊 Total pages found: ${#NEW_PAGES[@]}"
+        
         # Convert array to JSON for output
-        PAGES_JSON=$(printf '%s\n' "${NEW_PAGES[@]}" | jq -R . | jq -s .)
-        echo "new_pages=$PAGES_JSON" >> $GITHUB_OUTPUT
-        echo "New pages detected: $PAGES_JSON"
+        if [ ${#NEW_PAGES[@]} -eq 0 ]; then
+          PAGES_JSON="[]"
+        else
+          # Create properly formatted JSON array
+          PAGES_JSON="["
+          for i in "${!NEW_PAGES[@]}"; do
+            if [ $i -gt 0 ]; then
+              PAGES_JSON="${PAGES_JSON},"
+            fi
+            PAGES_JSON="${PAGES_JSON}\"${NEW_PAGES[$i]}\""
+          done
+          PAGES_JSON="${PAGES_JSON}]"
+        fi
+        
+        # Validate JSON format
+        echo "$PAGES_JSON" | jq . > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+          echo "✅ Valid JSON created: $PAGES_JSON"
+          echo "new_pages=$PAGES_JSON" >> $GITHUB_OUTPUT
+        else
+          echo "❌ Invalid JSON format: $PAGES_JSON"
+          echo "🔧 Falling back to empty array"
+          echo "new_pages=[]" >> $GITHUB_OUTPUT
+        fi
 
     - name: Submit URLs to Google Search Console
       if: steps.changes.outputs.new_pages != '[]'
