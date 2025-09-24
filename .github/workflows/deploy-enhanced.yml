@@ -296,6 +296,10 @@ jobs:
         # Ping Bing
         echo "🔗 Pinging Bing sitemap: ${SITEMAP_URL}"
         curl -s "https://www.bing.com/ping?sitemap=${SITEMAP_URL}" || echo "Bing ping failed"
+
+        # Ping Yandex
+        echo "🔗 Pinging Yandex sitemap: ${SITEMAP_URL}"
+        curl -s "https://webmaster.yandex.com/ping?sitemap=${SITEMAP_URL}" || echo "Bing ping failed"
         
         echo "✅ Sitemap ping completed"
 
