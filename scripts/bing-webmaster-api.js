@@ -15,15 +15,14 @@ class BingWebmasterAPI {
       const fullUrl = url.startsWith('http') ? url : `${this.siteUrl}${url.replace(/^\//, '')}`;
       
       const response = await axios.post(
-        `${this.baseUrl}/SubmitUrl`,
+        `${this.baseUrl}/SubmitUrl?apikey=${this.apiKey}`,
         {
           siteUrl: this.siteUrl,
           url: fullUrl
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.apiKey}`
+            'Content-Type': 'application/json'
           }
         }
       );
@@ -59,15 +58,14 @@ class BingWebmasterAPI {
       );
 
       const response = await axios.post(
-        `${this.baseUrl}/SubmitUrlBatch`,
+        `${this.baseUrl}/SubmitUrlBatch?apikey=${this.apiKey}`,
         {
           siteUrl: this.siteUrl,
           urlList: fullUrls
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.apiKey}`
+            'Content-Type': 'application/json'
           }
         }
       );
@@ -83,10 +81,9 @@ class BingWebmasterAPI {
   async getQuota() {
     try {
       const response = await axios.get(
-        `${this.baseUrl}/GetUrlSubmissionQuota?siteUrl=${encodeURIComponent(this.siteUrl)}`,
+        `${this.baseUrl}/GetUrlSubmissionQuota?apikey=${this.apiKey}&siteUrl=${encodeURIComponent(this.siteUrl)}`,
         {
           headers: {
-            'Authorization': `Bearer ${this.apiKey}`
           }
         }
       );
@@ -113,9 +110,9 @@ if (require.main === module) {
 
       // Submit new URLs
       const newUrls = [
-        '/blog/ai-development-guide-2025',
-        '/blog/css-mastery-guide-2025',
-        '/blog/data-transformation-guide-2025'
+        '/blog/web-security-essentials-2025',
+        '/blog/image-optimization-guide-2025',
+        '/blog/timezone-management-guide-2025'
       ];
 
       const results = await bingAPI.submitMultipleUrls(newUrls);

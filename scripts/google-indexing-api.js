@@ -90,9 +90,6 @@ if (require.main === module) {
     if (await googleAPI.authenticate()) {
       // Submit new blog articles
       const newUrls = [
-        '/blog/ai-development-guide-2025',
-        '/blog/css-mastery-guide-2025',
-        '/blog/data-transformation-guide-2025',
         '/blog/web-security-essentials-2025',
         '/blog/image-optimization-guide-2025',
         '/blog/timezone-management-guide-2025'

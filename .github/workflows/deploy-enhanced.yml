@@ -257,15 +257,14 @@ jobs:
               console.log('   API Key present:', !!apiKey);
               
               await axios.post(
-                'https://ssl.bing.com/webmaster/api.svc/json/SubmitUrl',
+                'https://ssl.bing.com/webmaster/api.svc/json/SubmitUrl?apikey=' + apiKey,
                 {
                   siteUrl: siteUrl,
                   url: fullUrl
                 },
                 {
                   headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + apiKey
+                    'Content-Type': 'application/json'
                   }
                 }
               );
