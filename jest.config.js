@@ -6,6 +6,7 @@ module.exports = {
     "node_modules/(?!jose/)"
   ],
   moduleNameMapper: {
-    "\\.(css|less|sass|scss)$": "identity-obj-proxy"
+    "\\.(css|less|sass|scss)$": "identity-obj-proxy",
+    "^next/head$": "<rootDir>/__mocks__/next/head.js"
   },
 };
