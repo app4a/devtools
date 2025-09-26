@@ -3,19 +3,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
-// Determine if we're building for GitHub Pages
-const isGithubPages = process.env.GITHUB_PAGES === 'true';
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'developer-tools';
+// Configuration optimized for GitHub Pages deployment
 
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   
-  // GitHub Pages configuration
-  ...(isGithubPages && {
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}/`,
-  }),
+  // Always use basePath for consistency between dev and production
+  basePath: '/devtools',
+  assetPrefix: '/devtools/',
   
   // Disable image optimization for static export
   images: {

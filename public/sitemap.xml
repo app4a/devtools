@@ -134,9 +134,45 @@
   </url>
   <url>
     <loc>https://app4a.github.io/devtools/blog</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/api-development-testing-guide</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/environment-variables-configuration-guide</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/svg-icons-graphics-optimization</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/email-marketing-template-design</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/kubernetes-container-orchestration</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://app4a.github.io/devtools/blog/color-theory-design-systems</loc>
+    <lastmod>2025-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://app4a.github.io/devtools/blog/ai-development-guide-2025</loc>

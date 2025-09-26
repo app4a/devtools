@@ -15,6 +15,54 @@ import SEO from '../../components/SEO';
 
 const blogPosts = [
   {
+    title: "Complete Guide to API Development and Testing: Best Practices for Modern Web Applications",
+    excerpt: "Master API development and testing with comprehensive guide covering REST API design, HTTP methods, testing strategies, documentation, and debugging techniques.",
+    slug: "api-development-testing-guide",
+    category: "API Development",
+    readTime: "16 min read",
+    keywords: ["api development", "api testing", "rest api design", "http methods", "api documentation"]
+  },
+  {
+    title: "Environment Variables and Configuration Management: Complete DevOps Guide",
+    excerpt: "Master environment variables management with comprehensive guide covering .env files, Docker configs, Kubernetes secrets, security best practices, and configuration strategies.",
+    slug: "environment-variables-configuration-guide",
+    category: "DevOps",
+    readTime: "14 min read",
+    keywords: ["environment variables", "configuration management", "devops", "docker environment", "kubernetes secrets"]
+  },
+  {
+    title: "SVG Icons and Graphics Optimization: Complete Design Guide for Modern Web Applications",
+    excerpt: "Master SVG icon creation, optimization techniques, and graphics performance for web applications. Learn best practices for scalable vector graphics and icon libraries.",
+    slug: "svg-icons-graphics-optimization",
+    category: "Design",
+    readTime: "15 min read",
+    keywords: ["svg icons", "graphics optimization", "scalable vector graphics", "icon design", "web performance"]
+  },
+  {
+    title: "Email Marketing and Template Design: Complete Guide to Responsive Email Development",
+    excerpt: "Master email template design and marketing strategies with comprehensive guide covering responsive design, deliverability, accessibility, and modern email development.",
+    slug: "email-marketing-template-design",
+    category: "Marketing",
+    readTime: "18 min read",
+    keywords: ["email marketing", "email template design", "responsive email", "email deliverability", "html email"]
+  },
+  {
+    title: "Kubernetes and Container Orchestration: Complete DevOps Guide for Modern Applications",
+    excerpt: "Master Kubernetes container orchestration with comprehensive guide covering deployments, services, scaling, monitoring, and best practices for production environments.",
+    slug: "kubernetes-container-orchestration",
+    category: "DevOps",
+    readTime: "20 min read",
+    keywords: ["kubernetes", "container orchestration", "devops", "microservices", "docker", "cloud native"]
+  },
+  {
+    title: "Color Theory and Design Systems: Complete Guide to Creating Cohesive Digital Experiences",
+    excerpt: "Master color theory and design systems with comprehensive guide covering color psychology, accessibility, brand consistency, and scalable design implementation.",
+    slug: "color-theory-design-systems",
+    category: "Design",
+    readTime: "17 min read",
+    keywords: ["color theory", "design systems", "color accessibility", "brand colors", "color psychology"]
+  },
+  {
     title: "AI in Development: Complete Guide to Prompt Engineering and Token Optimization",
     excerpt: "Master AI integration in development workflows. Learn prompt engineering, token optimization, cost management, and best practices for ChatGPT, Claude, and Gemini integration.",
     slug: "ai-development-guide-2025",
@@ -117,7 +165,7 @@ export default function BlogIndex() {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "Developer Tools Blog",
-    "description": "Expert guides, tutorials, and best practices for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools.",
+    "description": "Expert guides, tutorials, and best practices for web developers. Learn API development, environment variables, SVG optimization, email marketing, Kubernetes, color theory, AI development, CSS mastery, data transformation, web security, and essential development tools.",
     "url": "https://app4a.github.io/devtools/blog",
     "publisher": {
       "@type": "Organization",
@@ -141,13 +189,19 @@ export default function BlogIndex() {
     <Container maxWidth="lg">
       <SEO
         title="Developer Tools Blog - Guides, Tutorials & Best Practices"
-        description="Expert guides and tutorials for web developers. Learn AI development, CSS mastery, data transformation, web security, image optimization, timezone management, and essential development tools for 2025."
+        description="Expert guides and tutorials for web developers. Learn API development, environment variables, SVG optimization, email marketing, Kubernetes, color theory, AI development, CSS mastery, data transformation, web security, and essential development tools."
         canonical="/blog"
         schema={blogSchema}
         keywords={[
           'developer blog',
           'web development tutorials',
           'programming guides',
+          'api development guide',
+          'environment variables management',
+          'svg icons optimization',
+          'email marketing design',
+          'kubernetes orchestration',
+          'color theory design systems',
           'ai development guide',
           'css mastery',
           'data transformation',
