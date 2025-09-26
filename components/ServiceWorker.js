@@ -15,7 +15,7 @@ const ServiceWorkerManager = () => {
     try {
       console.log('[SW] Registering service worker...');
       const registration = await navigator.serviceWorker.register('/devtools/sw.js', {
-        scope: '/',
+        scope: '/devtools/',
       });
 
       console.log('[SW] Registration successful:', registration);
